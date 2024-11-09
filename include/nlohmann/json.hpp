@@ -2116,7 +2116,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
 
     /// @brief access specified object element
     /// @sa https://json.nlohmann.me/api/basic_json/operator%5B%5D/
-    reference operator[](typename object_t::key_type key)
+    reference operator[](typename object_t::key_type key) // NOLINT(performance-unnecessary-value-param)
     {
         // implicitly convert null value to an empty object
         if (is_null())
@@ -3282,7 +3282,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
 
     /// @brief inserts element into array
     /// @sa https://json.nlohmann.me/api/basic_json/insert/
-    iterator insert(const_iterator pos, const basic_json& val)
+    iterator insert(const_iterator pos, const basic_json& val) // NOLINT(performance-unnecessary-value-param)
     {
         // insert only works for arrays
         if (JSON_HEDLEY_LIKELY(is_array()))
@@ -3302,14 +3302,14 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
 
     /// @brief inserts element into array
     /// @sa https://json.nlohmann.me/api/basic_json/insert/
-    iterator insert(const_iterator pos, basic_json&& val)
+    iterator insert(const_iterator pos, basic_json&& val) // NOLINT(performance-unnecessary-value-param)
     {
         return insert(pos, val);
     }
 
     /// @brief inserts copies of element into array
     /// @sa https://json.nlohmann.me/api/basic_json/insert/
-    iterator insert(const_iterator pos, size_type cnt, const basic_json& val)
+    iterator insert(const_iterator pos, size_type cnt, const basic_json& val) // NOLINT(performance-unnecessary-value-param)
     {
         // insert only works for arrays
         if (JSON_HEDLEY_LIKELY(is_array()))
@@ -3329,7 +3329,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
 
     /// @brief inserts range of elements into array
     /// @sa https://json.nlohmann.me/api/basic_json/insert/
-    iterator insert(const_iterator pos, const_iterator first, const_iterator last)
+    iterator insert(const_iterator pos, const_iterator first, const_iterator last) // NOLINT(performance-unnecessary-value-param)
     {
         // insert only works for arrays
         if (JSON_HEDLEY_UNLIKELY(!is_array()))
@@ -3412,7 +3412,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
 
     /// @brief updates a JSON object from another object, overwriting existing keys
     /// @sa https://json.nlohmann.me/api/basic_json/update/
-    void update(const_iterator first, const_iterator last, bool merge_objects = false)
+    void update(const_iterator first, const_iterator last, bool merge_objects = false) // NOLINT(performance-unnecessary-value-param)
     {
         // implicitly convert null value to an empty object
         if (is_null())
