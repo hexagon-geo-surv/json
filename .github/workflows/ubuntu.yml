@@ -136,7 +136,7 @@ jobs:
       - name: Run CMake
         run: CXX=g++-${{ matrix.compiler }} cmake -S . -B build -DJSON_CI=On
       - name: Build
-        run: cmake --build build --target ci_test_compiler_default
+        run: cmake --build build --target ci_test_compiler_g++-${{ matrix.compiler }}
 
   ci_test_compilers_gcc:
     runs-on: ubuntu-latest
