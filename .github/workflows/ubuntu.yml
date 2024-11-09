@@ -129,7 +129,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        compiler: ['4.8.5', '4.9.3', '5.4.0', '6.4.0']
+        compiler: ['4.8', '4.9', '5', '6']
     container: ghcr.io/nlohmann/json-ci:v2.4.0
     steps:
       - uses: actions/checkout@v4
