@@ -134,7 +134,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run CMake
-        run: CXX=${{ matrix.compiler }} cmake -S . -B build -DJSON_CI=On
+        run: CXX=g++-${{ matrix.compiler }} cmake -S . -B build -DJSON_CI=On
       - name: Build
         run: cmake --build build --target ci_test_compiler_default
 
