@@ -17,7 +17,7 @@
 // build test with C++14
 // JSON_HAS_CPP_14
 
-TEST_CASE_TEMPLATE("element access 2", Json, nlohmann::json, nlohmann::ordered_json)
+TEST_CASE_TEMPLATE("element access 2", Json, nlohmann::json, nlohmann::ordered_json) // NOLINT(readability-math-missing-parentheses)
 {
     SECTION("object")
     {
@@ -1456,7 +1456,7 @@ TEST_CASE_TEMPLATE("element access 2", Json, nlohmann::json, nlohmann::ordered_j
 }
 
 #if !defined(JSON_NOEXCEPTION)
-TEST_CASE_TEMPLATE("element access 2 (throwing tests)", Json, nlohmann::json, nlohmann::ordered_json)
+TEST_CASE_TEMPLATE("element access 2 (throwing tests)", Json, nlohmann::json, nlohmann::ordered_json) // NOLINT(readability-math-missing-parentheses)
 {
     SECTION("object")
     {
@@ -1492,7 +1492,7 @@ TEST_CASE_TEMPLATE("element access 2 (throwing tests)", Json, nlohmann::json, nl
 #endif
 
 // TODO(falbrechtskirchinger) merge with the other test case; clean up
-TEST_CASE_TEMPLATE("element access 2 (additional value() tests)", Json, nlohmann::json, nlohmann::ordered_json)
+TEST_CASE_TEMPLATE("element access 2 (additional value() tests)", Json, nlohmann::json, nlohmann::ordered_json) // NOLINT(readability-math-missing-parentheses)
 {
     using string_t = typename Json::string_t;
     using number_integer_t = typename Json::number_integer_t;

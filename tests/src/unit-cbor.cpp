@@ -989,7 +989,7 @@ TEST_CASE("CBOR")
                     {
                         0xfa, 0xff, 0x7f, 0xff, 0xff
                     };
-                    // the same with lowest float
+                    // the same with the lowest float
                     const auto result = json::to_cbor(j);
                     CHECK(result == expected);
                     // roundtrip
