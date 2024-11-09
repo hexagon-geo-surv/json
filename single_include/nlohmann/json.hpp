@@ -22689,7 +22689,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
 
     /// @brief inserts elements from initializer list into array
     /// @sa https://json.nlohmann.me/api/basic_json/insert/
-    iterator insert(const_iterator pos, initializer_list_t ilist)
+    iterator insert(const_iterator pos, initializer_list_t ilist) // NOLINT(performance-unnecessary-value-param)
     {
         // insert only works for arrays
         if (JSON_HEDLEY_UNLIKELY(!is_array()))
@@ -22709,7 +22709,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
 
     /// @brief inserts range of elements into object
     /// @sa https://json.nlohmann.me/api/basic_json/insert/
-    void insert(const_iterator first, const_iterator last)
+    void insert(const_iterator first, const_iterator last) // NOLINT(performance-unnecessary-value-param)
     {
         // insert only works for objects
         if (JSON_HEDLEY_UNLIKELY(!is_object()))
