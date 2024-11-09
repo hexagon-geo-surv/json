@@ -573,7 +573,7 @@ TEST_CASE("BJData")
 
                         // check individual bytes
                         CHECK(result[0] == 'I');
-                        auto const restored = static_cast<uint16_t>(static_cast<uint8_t>(result[2]) * 256 + static_cast<uint8_t>(result[1]));
+                        auto const restored = static_cast<uint16_t>((static_cast<uint8_t>(result[2]) * 256) + static_cast<uint8_t>(result[1]));
                         CHECK(restored == i);
 
                         // roundtrip
@@ -613,7 +613,7 @@ TEST_CASE("BJData")
 
                         // check individual bytes
                         CHECK(result[0] == 'u');
-                        auto const restored = static_cast<uint16_t>(static_cast<uint8_t>(result[2]) * 256 + static_cast<uint8_t>(result[1]));
+                        auto const restored = static_cast<uint16_t>((static_cast<uint8_t>(result[2]) * 256) + static_cast<uint8_t>(result[1]));
                         CHECK(restored == i);
 
                         // roundtrip
@@ -905,7 +905,7 @@ TEST_CASE("BJData")
 
                         // check individual bytes
                         CHECK(result[0] == 'I');
-                        auto const restored = static_cast<uint16_t>(static_cast<uint8_t>(result[2]) * 256 + static_cast<uint8_t>(result[1]));
+                        auto const restored = static_cast<uint16_t>((static_cast<uint8_t>(result[2]) * 256) + static_cast<uint8_t>(result[1]));
                         CHECK(restored == i);
 
                         // roundtrip
@@ -944,7 +944,7 @@ TEST_CASE("BJData")
 
                         // check individual bytes
                         CHECK(result[0] == 'u');
-                        auto const restored = static_cast<uint16_t>(static_cast<uint8_t>(result[2]) * 256 + static_cast<uint8_t>(result[1]));
+                        auto const restored = static_cast<uint16_t>((static_cast<uint8_t>(result[2]) * 256) + static_cast<uint8_t>(result[1]));
                         CHECK(restored == i);
 
                         // roundtrip
