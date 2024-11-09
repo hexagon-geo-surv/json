@@ -22592,7 +22592,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     /// @note: This uses std::distance to support GCC 4.8,
     ///        see https://github.com/nlohmann/json/pull/1257
     template<typename... Args>
-    iterator insert_iterator(const_iterator pos, Args&& ... args)
+    iterator insert_iterator(const_iterator pos, Args&& ... args) // NOLINT(performance-unnecessary-value-param)
     {
         iterator result(this);
         JSON_ASSERT(m_data.m_value.array != nullptr);
