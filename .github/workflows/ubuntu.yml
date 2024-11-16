@@ -206,6 +206,7 @@ jobs:
     strategy:
       matrix:
         standard: [11, 14, 17, 20, 23]
+        stdlib: [libcxx, libstdcxx]
     steps:
       - name: Install git and unzip
         run: apt-get update ; apt-get install -y git unzip
@@ -214,8 +215,12 @@ jobs:
         uses: lukka/get-cmake@v3.27.7
       - name: Run CMake
         run: cmake -S . -B build -DJSON_CI=On
-      - name: Build
+      - name: Build with libc++
+        run: cmake --build build --target ci_test_clang_libcxx_cxx${{ matrix.standard }}
+        if: ${{ matrix.stdlib == 'libcxx' }}
+      - name: Build with libstdc++
         run: cmake --build build --target ci_test_clang_cxx${{ matrix.standard }}
+        if: ${{ matrix.stdlib == 'libstdcxx' }}
 
   ci_cuda_example:
     runs-on: ubuntu-latest
