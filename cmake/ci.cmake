@@ -472,7 +472,7 @@ foreach(CXX_STANDARD 11 14 17 20 23)
             -S${PROJECT_SOURCE_DIR} -B${PROJECT_BINARY_DIR}/build_clang_cxx${CXX_STANDARD}
         COMMAND ${CMAKE_COMMAND} --build ${PROJECT_BINARY_DIR}/build_clang_cxx${CXX_STANDARD}
         COMMAND cd ${PROJECT_BINARY_DIR}/build_clang_cxx${CXX_STANDARD} && ${CMAKE_CTEST_COMMAND} --parallel ${N} --output-on-failure
-        COMMENT "Compile and test with Clang for C++${CXX_STANDARD} (libc++++)"
+        COMMENT "Compile and test with Clang for C++${CXX_STANDARD} (libc++)"
     )
 endforeach()
 

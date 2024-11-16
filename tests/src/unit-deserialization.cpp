@@ -1132,12 +1132,17 @@ TEST_CASE("deserialization")
 }
 
 TEST_CASE_TEMPLATE("deserialization of different character types (ASCII)", T, // NOLINT(readability-math-missing-parentheses)
-                   char, unsigned char, signed char,
-                   wchar_t,
-                   char16_t, char32_t,
-                   std::uint8_t, std::int8_t,
-                   std::int16_t, std::uint16_t,
-                   std::int32_t, std::uint32_t)
+#ifdef JSON_HAS_CPP_20
+    char8_t,
+#endif
+#ifndef _LIBCPP_VERSION // see https://github.com/nlohmann/json/issues/4490
+    unsigned char, signed char,
+    std::uint8_t, std::int8_t,
+    std::int16_t, std::uint16_t,
+    std::int32_t, std::uint32_t,
+#endif
+                   char, wchar_t, char16_t, char32_t
+                  )
 {
     std::vector<T> const v = {'t', 'r', 'u', 'e'};
     CHECK(json::parse(v) == json(true));
@@ -1163,7 +1168,11 @@ TEST_CASE_TEMPLATE("deserialization of different character types (UTF-8)", T, //
 }
 
 TEST_CASE_TEMPLATE("deserialization of different character types (UTF-16)", T, // NOLINT(readability-math-missing-parentheses)
-                   char16_t, std::uint16_t)
+#ifndef _LIBCPP_VERSION // see https://github.com/nlohmann/json/issues/4490
+    std::uint16_t,
+#endif
+                   char16_t
+                  )
 {
     // a star emoji
     std::vector<T> const v = {static_cast<T>('"'), static_cast<T>(0x2b50), static_cast<T>(0xfe0f), static_cast<T>('"')};
@@ -1176,7 +1185,11 @@ TEST_CASE_TEMPLATE("deserialization of different character types (UTF-16)", T, /
 }
 
 TEST_CASE_TEMPLATE("deserialization of different character types (UTF-32)", T, // NOLINT(readability-math-missing-parentheses)
-                   char32_t, std::uint32_t)
+#ifndef _LIBCPP_VERSION // see https://github.com/nlohmann/json/issues/4490
+    std::uint32_t,
+#endif
+                   char32_t
+                  )
 {
     // a star emoji
     std::vector<T> const v = {static_cast<T>('"'), static_cast<T>(0x2b50), static_cast<T>(0xfe0f), static_cast<T>('"')};
