@@ -72,7 +72,7 @@ struct ParserImpl final: public nlohmann::json_sax<json>
 
     ~ParserImpl() override;
 
-    json::string_t float_string_copy;
+    json::string_t float_string_copy = "";
 };
 
 ParserImpl::~ParserImpl() = default;
