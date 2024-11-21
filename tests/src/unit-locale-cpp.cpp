@@ -72,6 +72,31 @@ struct ParserImpl final: public nlohmann::json_sax<json>
 
     ~ParserImpl() override;
 
+    ParserImpl(const ParserImpl& other)
+        : float_string_copy(other.float_string_copy)
+    {}
+
+    ParserImpl(ParserImpl&& other) noexcept
+        : float_string_copy(std::move(other.float_string_copy))
+    {}
+
+    ParserImpl& operator=(const ParserImpl& other) {
+        if (this != &other)
+        {
+            float_string_copy = other.float_string_copy;
+        }
+        return *this;
+    }
+
+    ParserImpl& operator=(ParserImpl&& other) noexcept
+    {
+        if (this != &other)
+        {
+            float_string_copy = std::move(other.float_string_copy);
+        }
+        return *this;
+    }
+
     json::string_t float_string_copy = "not set";
 };
 
