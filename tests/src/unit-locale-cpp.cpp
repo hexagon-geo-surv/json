@@ -72,17 +72,14 @@ struct ParserImpl final: public nlohmann::json_sax<json>
 
     ~ParserImpl() override;
 
-    json::string_t float_string_copy = "";
+    json::string_t float_string_copy = "not set";
 };
 
 ParserImpl::~ParserImpl() = default;
 
 TEST_CASE("locale-dependent test (LC_NUMERIC=C")
 {
-    if (std::setlocale(LC_NUMERIC, "C") == nullptr)
-    {
-        WARN("could not set locale");
-    }
+    WARN_MESSAGE(std::setlocale(LC_NUMERIC, "C") != nullptr, "could not set locale");
 
     SECTION("parsing")
     {
@@ -99,10 +96,7 @@ TEST_CASE("locale-dependent test (LC_NUMERIC=C")
 
 TEST_CASE("locale-dependent test (LC_NUMERIC=de_DE")
 {
-    if (std::setlocale(LC_NUMERIC, "de_DE") == nullptr)
-    {
-        WARN("could not set locale");
-    }
+    WARN_MESSAGE(std::setlocale(LC_NUMERIC, "de_DE") != nullptr, "could not set locale");
 
     SECTION("parsing")
     {
