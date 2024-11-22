@@ -111,6 +111,13 @@ TEST_CASE("locale-dependent test (LC_NUMERIC=C")
 {
     WARN_MESSAGE(std::setlocale(LC_NUMERIC, "C") != nullptr, "could not set locale");
 
+    SECTION("check if locale is properly set")
+    {
+        std::array<char, 6> buffer = {};
+        CHECK(std::snprintf(buffer.data(), buffer.size(), "%.2f", 12.34) == 5);
+        CHECK(std::string(buffer.data()) == "12.34");
+    }
+
     SECTION("parsing")
     {
         CHECK(json::parse("12.34").dump() == "12.34");
@@ -127,6 +134,13 @@ TEST_CASE("locale-dependent test (LC_NUMERIC=C")
 TEST_CASE("locale-dependent test (LC_NUMERIC=de_DE")
 {
     WARN_MESSAGE(std::setlocale(LC_NUMERIC, "de_DE") != nullptr, "could not set locale");
+
+    SECTION("check if locale is properly set")
+    {
+        std::array<char, 6> buffer = {};
+        CHECK(std::snprintf(buffer.data(), buffer.size(), "%.2f", 12.34) == 5);
+        CHECK(std::string(buffer.data()) == "12,34");
+    }
 
     SECTION("parsing")
     {
