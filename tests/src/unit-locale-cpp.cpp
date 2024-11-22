@@ -107,7 +107,7 @@ struct ParserImpl final: public nlohmann::json_sax<json>
 
 ParserImpl::~ParserImpl() = default;
 
-TEST_CASE("locale-dependent test (LC_NUMERIC=C")
+TEST_CASE("locale-dependent test (LC_NUMERIC=C)")
 {
     WARN_MESSAGE(std::setlocale(LC_NUMERIC, "C") != nullptr, "could not set locale");
 
@@ -131,26 +131,31 @@ TEST_CASE("locale-dependent test (LC_NUMERIC=C")
     }
 }
 
-TEST_CASE("locale-dependent test (LC_NUMERIC=de_DE")
+TEST_CASE("locale-dependent test (LC_NUMERIC=de_DE)")
 {
-    WARN_MESSAGE(std::setlocale(LC_NUMERIC, "de_DE") != nullptr, "could not set locale");
-
-    SECTION("check if locale is properly set")
+    if (std::setlocale(LC_NUMERIC, "de_DE") != nullptr)
     {
-        std::array<char, 6> buffer = {};
-        CHECK(std::snprintf(buffer.data(), buffer.size(), "%.2f", 12.34) == 5);
-        CHECK(std::string(buffer.data()) == "12,34");
+        SECTION("check if locale is properly set")
+        {
+            std::array<char, 6> buffer = {};
+            CHECK(std::snprintf(buffer.data(), buffer.size(), "%.2f", 12.34) == 5);
+            CHECK(std::string(buffer.data()) == "12,34");
+        }
+
+        SECTION("parsing")
+        {
+            CHECK(json::parse("12.34").dump() == "12.34");
+        }
+
+        SECTION("SAX parsing")
+        {
+            ParserImpl sax{};
+            json::sax_parse("12.34", &sax);
+            CHECK(sax.float_string_copy == "12.34");
+        }
     }
-
-    SECTION("parsing")
+    else
     {
-        CHECK(json::parse("12.34").dump() == "12.34");
-    }
-
-    SECTION("SAX parsing")
-    {
-        ParserImpl sax {};
-        json::sax_parse( "12.34", &sax );
-        CHECK(sax.float_string_copy == "12.34");
+        MESSAGE("locale de_DE is not usable");
     }
 }
