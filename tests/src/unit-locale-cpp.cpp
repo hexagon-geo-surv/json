@@ -114,7 +114,7 @@ TEST_CASE("locale-dependent test (LC_NUMERIC=C)")
     SECTION("check if locale is properly set")
     {
         std::array<char, 6> buffer = {};
-        CHECK(std::snprintf(buffer.data(), buffer.size(), "%.2f", 12.34) == 5);
+        CHECK(std::snprintf(buffer.data(), buffer.size(), "%.2f", 12.34) == 5); // NOLINT(cppcoreguidelines-pro-type-vararg)
         CHECK(std::string(buffer.data()) == "12.34");
     }
 
@@ -138,7 +138,7 @@ TEST_CASE("locale-dependent test (LC_NUMERIC=de_DE)")
         SECTION("check if locale is properly set")
         {
             std::array<char, 6> buffer = {};
-            CHECK(std::snprintf(buffer.data(), buffer.size(), "%.2f", 12.34) == 5);
+            CHECK(std::snprintf(buffer.data(), buffer.size(), "%.2f", 12.34) == 5); // NOLINT(cppcoreguidelines-pro-type-vararg)
             CHECK(std::string(buffer.data()) == "12,34");
         }
 
