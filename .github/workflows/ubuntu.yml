@@ -111,7 +111,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install de_DE locale
-        run: apt-get update ; apt-get install -y language-pack-de ; sudo locale-gen de_DE ; sudo update-locale
+        run: sudo locale-gen de_DE ; sudo update-locale
       - name: Run CMake
         run: cmake -S . -B build -DJSON_CI=On
       - name: Build
