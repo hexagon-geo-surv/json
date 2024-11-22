@@ -84,7 +84,8 @@ struct ParserImpl final: public nlohmann::json_sax<json>
         : float_string_copy(std::move(other.float_string_copy))
     {}
 
-    ParserImpl& operator=(const ParserImpl& other) {
+    ParserImpl& operator=(const ParserImpl& other)
+    {
         if (this != &other)
         {
             float_string_copy = other.float_string_copy;
