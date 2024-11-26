@@ -303,8 +303,6 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/nlohmann
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/nlohmann
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/nielslohmann/
     - icon: fontawesome/brands/xing
@@ -336,7 +334,11 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   #- pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tabbed:
@@ -345,8 +347,6 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: docs
       check_paths: true
-  - plantuml_markdown:
-      format: svg
 
 plugins:
     - search:

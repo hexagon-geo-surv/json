@@ -29,8 +29,6 @@ mkdocs-redirects==1.2.2
 mkdocs-simple-hooks==0.1.5
 nltk==3.8.1
 packaging==24.2
-plantuml==0.3.0
-plantuml-markdown==3.10.4
 Pygments==2.18.0
 pymdown-extensions==10.12
 pyparsing==3.2.0
