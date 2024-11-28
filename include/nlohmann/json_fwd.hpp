@@ -10,9 +10,11 @@
 #define INCLUDE_NLOHMANN_JSON_FWD_HPP_
 
 #include <cstdint> // int64_t, uint64_t
+#include <functional> // less
 #include <map> // map
 #include <memory> // allocator
 #include <string> // string
+#include <utility> // pair
 #include <vector> // vector
 
 #include <nlohmann/detail/abi_macros.hpp>
@@ -63,13 +65,14 @@ using json = basic_json<>;
 
 /// @brief a minimal map-like container that preserves insertion order
 /// @sa https://json.nlohmann.me/api/ordered_map/
-template<class Key, class T, class IgnoredLess, class Allocator>
-struct ordered_map;
+template<class Key, class T, class IgnoredLess = std::less<Key>,
+         class Allocator = std::allocator<std::pair<const Key, T>>>
+                 struct ordered_map;
 
-/// @brief specialization that maintains the insertion order of object keys
-/// @sa https://json.nlohmann.me/api/ordered_json/
-using ordered_json = basic_json<nlohmann::ordered_map>;
+         /// @brief specialization that maintains the insertion order of object keys
+         /// @sa https://json.nlohmann.me/api/ordered_json/
+         using ordered_json = basic_json<nlohmann::ordered_map>;
 
-NLOHMANN_JSON_NAMESPACE_END
+         NLOHMANN_JSON_NAMESPACE_END
 
 #endif  // INCLUDE_NLOHMANN_JSON_FWD_HPP_
