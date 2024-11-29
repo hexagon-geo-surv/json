@@ -39,6 +39,7 @@
   - [Conversions to/from arbitrary types](#arbitrary-types-conversions)
   - [Specializing enum conversion](#specializing-enum-conversion)
   - [Binary formats (BSON, CBOR, MessagePack, UBJSON, and BJData)](#binary-formats-bson-cbor-messagepack-ubjson-and-bjdata)
+- [Customers](#clients)
 - [Supported compilers](#supported-compilers)
 - [Integration](#integration)
   - [CMake](#cmake)
@@ -1108,6 +1109,21 @@ binary.set_subtype(0x10);
 auto cbor = json::to_msgpack(j); // 0xD5 (fixext2), 0x10, 0xCA, 0xFE
 ```
 
+## Customers
+
+- [**Peregrine Lunar Lander Flight 01**](https://en.wikipedia.org/wiki/Peregrine_Mission_One): The library was utilized for payload management in the **Peregrine Moon Lander**, developed by **Astrobotic Technology** and launched as part of NASA's **Commercial Lunar Payload Services (CLPS)** program. After six days in orbit, the spacecraft was intentionally redirected into Earth's atmosphere, where it burned up over the Pacific Ocean on **January 18, 2024**.
+- [**Mercedes-Benz Operating System (MB.OS)**](https://group.mercedes-benz.com/careers/about-us/mercedes-benz-operating-system/): The library is integrated into **Mercedes-Benz's automotive operating system**, a core component of its vehicle software ecosystem.
+- [**Sony PlayStation® 4**](https://doc.dl.playstation.net/doc/ps4-oss/index.html): The library is used in the operating system of PlayStation.
+- [**CoderPad**](https://coderpad.io): The library is included in every CoderPad instance and can be accessed with a simple `#include "json.hpp"`.
+- [**Compiler Explorer**](https://godbolt.org): The library is readily available in Compiler Explorer, accessible with the directive `#include <nlohmann/json.hpp>`.
+- [**llama.cpp**](https://github.com/ggerganov/llama.cpp): Used in the web server module of this **LLM inference library**, enabling JSON-based data handling for seamless integration.
+- [**PrestoDB**](https://github.com/prestodb/presto): The library plays a key role in the **distributed SQL query engine**, originally developed by Facebook for large-scale data analytics.
+- [**Microsoft WinGet**](https://github.com/microsoft/winget-cli): The library is employed within the **Windows Package Manager**, facilitating its operation.
+- [**Google gemma.cpp**](https://github.com/google/gemma.cpp): The library is integrated into **Google's gemma.cpp project**, enhancing its JSON data management.
+- [**Apple Core ML Tools**](https://github.com/apple/coremltools): Used in **Apple's Core ML Tools** to assist with machine learning model conversions and configurations.
+- [**Meta Yoga**](https://github.com/facebook/yoga): The library is leveraged in **Meta's Yoga layout engine**, which powers cross-platform UI design.
+- [**GitHub CodeQL**](https://github.com/github/codeql): Incorporated into **GitHub's CodeQL**, a tool for semantic code analysis and vulnerability detection.
+- [**TensorFlow**](https://github.com/tensorflow/tensorflow): The library is utilized in the **TensorFlow machine learning framework**, supporting data serialization and exchange.
 
 ## Supported compilers
 

@@ -30,7 +30,8 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-
+  icon:
+    repo: fontawesome/brands/github
   font:
     text: Roboto
     code: JetBrains Mono
@@ -41,6 +42,8 @@ theme:
     - navigation.indexes
     - navigation.top
     - content.tabs.link
+    - content.action.edit
+    - content.action.view
 
 nav:
   - Home:
@@ -349,19 +352,19 @@ markdown_extensions:
       check_paths: true
 
 plugins:
-    - search:
-        separator: '[\s\-\.]'
-        lang: en
-    - minify:
-        minify_html: true
-    - git-revision-date-localized
-    - redirects:
-        redirect_maps:
-            'api/basic_json/operator_gtgt.md': api/operator_gtgt.md
-            'api/basic_json/operator_ltlt.md': api/operator_ltlt.md
-            'api/basic_json/operator_literal_json.md': api/operator_literal_json.md
-            'api/basic_json/operator_literal_json_pointer.md': api/operator_literal_json_pointer.md
-            'api/json_pointer/operator_string.md': api/json_pointer/operator_string_t.md
+  - search:
+      separator: '[\s\-\.]'
+      lang: en
+  - minify:
+      minify_html: true
+  - git-revision-date-localized
+  - redirects:
+      redirect_maps:
+          'api/basic_json/operator_gtgt.md': api/operator_gtgt.md
+          'api/basic_json/operator_ltlt.md': api/operator_ltlt.md
+          'api/basic_json/operator_literal_json.md': api/operator_literal_json.md
+          'api/basic_json/operator_literal_json_pointer.md': api/operator_literal_json_pointer.md
+          'api/json_pointer/operator_string.md': api/json_pointer/operator_string_t.md
 
 extra_css:
     - css/custom.css

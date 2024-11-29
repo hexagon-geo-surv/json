@@ -49,7 +49,7 @@ header. See also the [macro overview page](../../features/macros.md).
 
 ## Serialization/deserialization macros
 
-- Enum: `NLOHMANN_JSON_SERIALIZE_ENUM`
+- Enum: [**NLOHMANN_JSON_SERIALIZE_ENUM**](nlohmann_json_serialize_enum.md)
 - Class/struct:
     - Do you need to serialize private variables?
         - Yes? Do you only need serialization?
