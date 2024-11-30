@@ -54,7 +54,7 @@ jobs:
       - name: Run CMake
         run: cmake -S . -B build -DJSON_CI=On
       - name: Build
-        run: cmake --build build --target ${{ matrix.target }}
+        run: cmake --build build --target ci_static_analysis
 
   ci_test_single_header:
     runs-on: ubuntu-latest
