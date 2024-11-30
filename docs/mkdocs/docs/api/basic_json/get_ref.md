@@ -58,6 +58,10 @@ Constant.
     --8<-- "examples/get_ref.output"
     ```
 
+## See also
+
+- [get_ptr()](get_ptr.md) get a pointer value
+
 ## Version history
 
 - Added in version 1.1.0.
