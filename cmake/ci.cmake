@@ -335,7 +335,6 @@ set(GCC_CXXFLAGS
     -Wnon-virtual-dtor
     -Wnonnull
     -Wnonnull-compare
-    -Wnonportable-cfstrings
     -Wnormalized=nfkc
     -Wno-nrvo
     -Wnull-dereference
