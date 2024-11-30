@@ -18,7 +18,7 @@ execute_process(COMMAND ${CLANG_TOOL} --version OUTPUT_VARIABLE CLANG_TOOL_VERSI
 string(REGEX MATCH "[0-9]+(\\.[0-9]+)+" CLANG_TOOL_VERSION "${CLANG_TOOL_VERSION}")
 message(STATUS "🔖 Clang ${CLANG_TOOL_VERSION} (${CLANG_TOOL})")
 
-find_program(CLANG_TIDY_TOOL NAMES clang-tidy-17 clang-tidy-16 clang-tidy-15 clang-tidy-14 clang-tidy-13 clang-tidy-12 clang-tidy-11 clang-tidy)
+find_program(CLANG_TIDY_TOOL NAMES clang-tidy-20 clang-tidy-19 clang-tidy-18 clang-tidy-17 clang-tidy-16 clang-tidy-15 clang-tidy-14 clang-tidy-13 clang-tidy-12 clang-tidy-11 clang-tidy)
 execute_process(COMMAND ${CLANG_TIDY_TOOL} --version OUTPUT_VARIABLE CLANG_TIDY_TOOL_VERSION ERROR_VARIABLE CLANG_TIDY_TOOL_VERSION)
 string(REGEX MATCH "[0-9]+(\\.[0-9]+)+" CLANG_TIDY_TOOL_VERSION "${CLANG_TIDY_TOOL_VERSION}")
 message(STATUS "🔖 Clang-Tidy ${CLANG_TIDY_TOOL_VERSION} (${CLANG_TIDY_TOOL})")
@@ -30,12 +30,12 @@ execute_process(COMMAND ${CPPCHECK_TOOL} --version OUTPUT_VARIABLE CPPCHECK_TOOL
 string(REGEX MATCH "[0-9]+(\\.[0-9]+)+" CPPCHECK_TOOL_VERSION "${CPPCHECK_TOOL_VERSION}")
 message(STATUS "🔖 Cppcheck ${CPPCHECK_TOOL_VERSION} (${CPPCHECK_TOOL})")
 
-find_program(GCC_TOOL NAMES g++-latest g++-HEAD g++-13 g++-12 g++-11 g++-10)
+find_program(GCC_TOOL NAMES g++-latest g++-HEAD g++-15 g++-14 g++-13 g++-12 g++-11 g++-10)
 execute_process(COMMAND ${GCC_TOOL} --version OUTPUT_VARIABLE GCC_TOOL_VERSION ERROR_VARIABLE GCC_TOOL_VERSION)
 string(REGEX MATCH "[0-9]+(\\.[0-9]+)+" GCC_TOOL_VERSION "${GCC_TOOL_VERSION}")
 message(STATUS "🔖 GCC ${GCC_TOOL_VERSION} (${GCC_TOOL})")
 
-find_program(GCOV_TOOL NAMES gcov-HEAD gcov-11 gcov-10 gcov)
+find_program(GCOV_TOOL NAMES gcov-HEAD gcov-15 gcov-14 gcov-13 gcov-12 gcov-11 gcov-10 gcov)
 execute_process(COMMAND ${GCOV_TOOL} --version OUTPUT_VARIABLE GCOV_TOOL_VERSION ERROR_VARIABLE GCOV_TOOL_VERSION)
 string(REGEX MATCH "[0-9]+(\\.[0-9]+)+" GCOV_TOOL_VERSION "${GCOV_TOOL_VERSION}")
 message(STATUS "🔖 GCOV ${GCOV_TOOL_VERSION} (${GCOV_TOOL})")
@@ -135,28 +135,49 @@ set(GCC_CXXFLAGS
     -Waggressive-loop-optimizations
     -Waligned-new=all
     -Wall
+    -Walloc-size
     -Walloc-zero
     -Walloca
+    -Wanalyzer-allocation-size
+    -Wanalyzer-deref-before-check
     -Wanalyzer-double-fclose
     -Wanalyzer-double-free
     -Wanalyzer-exposure-through-output-file
+    -Wanalyzer-exposure-through-uninit-copy
+    -Wanalyzer-fd-access-mode-mismatch
+    -Wanalyzer-fd-double-close
+    -Wanalyzer-fd-leak
+    -Wanalyzer-fd-phase-mismatch
+    -Wanalyzer-fd-type-mismatch
+    -Wanalyzer-fd-use-after-close
+    -Wanalyzer-fd-use-without-check
     -Wanalyzer-file-leak
     -Wanalyzer-free-of-non-heap
+    -Wanalyzer-imprecise-fp-arithmetic
+    -Wanalyzer-infinite-loop
+    -Wanalyzer-infinite-recursion
+    -Wanalyzer-jump-through-null
     -Wanalyzer-malloc-leak
     -Wanalyzer-mismatching-deallocation
     -Wanalyzer-null-argument
     -Wanalyzer-null-dereference
+    -Wanalyzer-out-of-bounds
+    -Wanalyzer-overlapping-buffers
     -Wanalyzer-possible-null-argument
     -Wanalyzer-possible-null-dereference
+    -Wanalyzer-putenv-of-auto-var
     -Wanalyzer-shift-count-negative
     -Wanalyzer-shift-count-overflow
     -Wanalyzer-stale-setjmp-buffer
+    -Wanalyzer-symbol-too-complex
     -Wanalyzer-tainted-allocation-size
     -Wanalyzer-tainted-array-index
+    -Wanalyzer-tainted-assertion
     -Wanalyzer-tainted-divisor
     -Wanalyzer-tainted-offset
     -Wanalyzer-tainted-size
     -Wanalyzer-too-complex
+    -Wanalyzer-undefined-behavior-strtok
     -Wanalyzer-unsafe-call-within-signal-handler
     -Wanalyzer-use-after-free
     -Wanalyzer-use-of-pointer-in-stale-stack-frame
@@ -189,13 +210,17 @@ set(GCC_CXXFLAGS
     -Wc++20-compat
     -Wc++20-extensions
     -Wc++23-extensions
+    -Wc++26-extensions
     -Wc++2a-compat
+    -Wcalloc-transposed-args
     -Wcannot-profile
     -Wcast-align
     -Wcast-align=strict
     -Wcast-function-type
     -Wcast-qual
+    -Wcast-user-defined
     -Wcatch-value=3
+    -Wchanges-meaning
     -Wchar-subscripts
     -Wclass-conversion
     -Wclass-memaccess
@@ -203,16 +228,19 @@ set(GCC_CXXFLAGS
     -Wcomma-subscript
     -Wcomment
     -Wcomments
+    -Wcomplain-wrong-lang
     -Wconditionally-supported
     -Wconversion
     -Wconversion-null
     -Wcoverage-invalid-line-number
     -Wcoverage-mismatch
+    -Wcoverage-too-many-conditions
     -Wcpp
     -Wctad-maybe-unsupported
     -Wctor-dtor-privacy
     -Wdangling-else
     -Wdangling-pointer=2
+    -Wdangling-reference
     -Wdate-time
     -Wdelete-incomplete
     -Wdelete-non-virtual-dtor
@@ -228,6 +256,7 @@ set(GCC_CXXFLAGS
     -Wduplicated-branches
     -Wduplicated-cond
     -Weffc++
+    -Welaborated-enum-base
     -Wempty-body
     -Wendif-labels
     -Wenum-compare
@@ -236,8 +265,15 @@ set(GCC_CXXFLAGS
     -Wexpansion-to-defined
     -Wextra
     -Wextra-semi
+    -Wflex-array-member-not-at-end
     -Wfloat-conversion
     -Wfloat-equal
+    -Wformat -Wformat-contains-nul
+    -Wformat -Wformat-extra-args
+    -Wformat -Wformat-nonliteral
+    -Wformat -Wformat-security
+    -Wformat -Wformat-y2k
+    -Wformat -Wformat-zero-length
     -Wformat-diag
     -Wformat-overflow=2
     -Wformat-signedness
@@ -245,6 +281,8 @@ set(GCC_CXXFLAGS
     -Wformat=2
     -Wframe-address
     -Wfree-nonheap-object
+    -Wglobal-module
+    -Whardened
     -Whsa
     -Wif-not-aligned
     -Wignored-attributes
@@ -259,10 +297,12 @@ set(GCC_CXXFLAGS
     -Wint-in-bool-context
     -Wint-to-pointer-cast
     -Winterference-size
+    -Winvalid-constexpr
     -Winvalid-imported-macros
     -Winvalid-memory-model
     -Winvalid-offsetof
     -Winvalid-pch
+    -Winvalid-utf8
     -Wliteral-suffix
     -Wlogical-not-parentheses
     -Wlogical-op
@@ -295,15 +335,18 @@ set(GCC_CXXFLAGS
     -Wnon-virtual-dtor
     -Wnonnull
     -Wnonnull-compare
+    -Wnonportable-cfstrings
     -Wnormalized=nfkc
+    -Wno-nrvo
     -Wnull-dereference
     -Wodr
     -Wold-style-cast
     -Wopenacc-parallelism
+    -Wopenmp
     -Wopenmp-simd
     -Woverflow
     -Woverlength-strings
-    -Woverloaded-virtual
+    -Woverloaded-virtual=2
     -Wpacked
     -Wpacked-bitfield-compat
     -Wpacked-not-aligned
@@ -328,6 +371,7 @@ set(GCC_CXXFLAGS
     -Wreturn-local-addr
     -Wreturn-type
     -Wscalar-storage-order
+    -Wself-move
     -Wsequence-point
     -Wshadow=compatible-local
     -Wshadow=global
@@ -359,6 +403,7 @@ set(GCC_CXXFLAGS
     -Wsuggest-attribute=malloc
     -Wsuggest-attribute=noreturn
     -Wsuggest-attribute=pure
+    -Wsuggest-attribute=returns_nonnull
     -Wsuggest-final-methods
     -Wsuggest-final-types
     -Wsuggest-override
@@ -380,6 +425,7 @@ set(GCC_CXXFLAGS
     -Wtsan
     -Wtype-limits
     -Wundef
+    -Wunicode
     -Wuninitialized
     -Wunknown-pragmas
     -Wunreachable-code
@@ -409,6 +455,7 @@ set(GCC_CXXFLAGS
     -Wvolatile
     -Wvolatile-register-var
     -Wwrite-strings
+    -Wxor-used-as-pow
     -Wzero-as-null-pointer-constant
     -Wzero-length-bounds
 )
