@@ -40,7 +40,7 @@ Constant.
 
 !!! danger "Undefined behavior"
 
-    Writing data to the referee of the result yields an undefined state.
+    The reference becomes invalid if the underlying JSON object changes.
 
 ## Examples
 

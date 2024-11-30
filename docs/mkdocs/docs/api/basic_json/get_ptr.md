@@ -35,7 +35,7 @@ Constant.
 
 !!! danger "Undefined behavior"
 
-    Writing data to the pointee of the result yields an undefined state.
+    The pointer becomes invalid if the underlying JSON object changes.
 
 ## Examples
 
