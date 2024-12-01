@@ -39,7 +39,7 @@
   - [Conversions to/from arbitrary types](#arbitrary-types-conversions)
   - [Specializing enum conversion](#specializing-enum-conversion)
   - [Binary formats (BSON, CBOR, MessagePack, UBJSON, and BJData)](#binary-formats-bson-cbor-messagepack-ubjson-and-bjdata)
-- [Customers](#clients)
+- [Customers](#customers)
 - [Supported compilers](#supported-compilers)
 - [Integration](#integration)
   - [CMake](#cmake)
@@ -1115,9 +1115,12 @@ auto cbor = json::to_msgpack(j); // 0xD5 (fixext2), 0x10, 0xCA, 0xFE
 
 ## Customers
 
+![JSON for Modern C++](docs/usages/clients.png)
+
 - [**Peregrine Lunar Lander Flight 01**](https://en.wikipedia.org/wiki/Peregrine_Mission_One): The library was utilized for payload management in the **Peregrine Moon Lander**, developed by **Astrobotic Technology** and launched as part of NASA's **Commercial Lunar Payload Services (CLPS)** program. After six days in orbit, the spacecraft was intentionally redirected into Earth's atmosphere, where it burned up over the Pacific Ocean on **January 18, 2024**.
 - [**Mercedes-Benz Operating System (MB.OS)**](https://group.mercedes-benz.com/careers/about-us/mercedes-benz-operating-system/): The library is integrated into **Mercedes-Benz's automotive operating system**, a core component of its vehicle software ecosystem.
 - [**Sony PlayStation® 4**](https://doc.dl.playstation.net/doc/ps4-oss/index.html): The library is used in the operating system of PlayStation.
+- [**Apple iOS and macOS**](https://www.apple.com/macos): Both iOS and macOS are using the library.
 - [**CoderPad**](https://coderpad.io): The library is included in every CoderPad instance and can be accessed with a simple `#include "json.hpp"`.
 - [**Compiler Explorer**](https://godbolt.org): The library is readily available in Compiler Explorer, accessible with the directive `#include <nlohmann/json.hpp>`.
 - [**llama.cpp**](https://github.com/ggerganov/llama.cpp): Used in the web server module of this **LLM inference library**, enabling JSON-based data handling for seamless integration.
@@ -1128,6 +1131,13 @@ auto cbor = json::to_msgpack(j); // 0xD5 (fixext2), 0x10, 0xCA, 0xFE
 - [**Meta Yoga**](https://github.com/facebook/yoga): The library is leveraged in **Meta's Yoga layout engine**, which powers cross-platform UI design.
 - [**GitHub CodeQL**](https://github.com/github/codeql): Incorporated into **GitHub's CodeQL**, a tool for semantic code analysis and vulnerability detection.
 - [**TensorFlow**](https://github.com/tensorflow/tensorflow): The library is utilized in the **TensorFlow machine learning framework**, supporting data serialization and exchange.
+- [**Notepad++**](https://github.com/notepad-plus-plus/notepad-plus-plus): The library is used in the free code editor **Notepad++**.
+- [**DB Browser for SQLite++**](https://github.com/sqlitebrowser/sqlitebrowser): The library is used in **DB Browser for SQLite++**, a high quality, visual, open source tool to create, design, and edit database files compatible with SQLite.
+- [**ImHex**](https://github.com/WerWolv/ImHex): The library is used in **ImHex**, a hex editor for reverse engineers.
+- [**SerenityOS**](https://github.com/SerenityOS/serenity): The **Serenity Operating System** uses the library.
+- [**Apollo**](https://github.com/ApolloAuto/apollo): The library is used in the **Apollo open autonomous driving platform**.
+- [**Mozilla llamafile**](https://github.com/Mozilla-Ocho/llamafile): The library is used in **llamafile**, a tool to distribute and run LLMs with a single file.
+- [**Ethereum Solidity**](https://github.com/ethereum/solidity): **Solidity**, the smart contract programming language of the Ethereum platform uses the library.
 
 ## Supported compilers
 
