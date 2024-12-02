@@ -1123,6 +1123,7 @@ auto cbor = json::to_msgpack(j); // 0xD5 (fixext2), 0x10, 0xCA, 0xFE
 - [**Apple iOS and macOS**](https://www.apple.com/macos): Both iOS and macOS are using the library.
 - [**CoderPad**](https://coderpad.io): The library is included in every CoderPad instance and can be accessed with a simple `#include "json.hpp"`.
 - [**Compiler Explorer**](https://godbolt.org): The library is readily available in Compiler Explorer, accessible with the directive `#include <nlohmann/json.hpp>`.
+- [**Minecraft**](https://www.minecraft.net/zh-hant/attribution): The library is used in **Minecraft**.
 - [**llama.cpp**](https://github.com/ggerganov/llama.cpp): Used in the web server module of this **LLM inference library**, enabling JSON-based data handling for seamless integration.
 - [**PrestoDB**](https://github.com/prestodb/presto): The library plays a key role in the **distributed SQL query engine**, originally developed by Facebook for large-scale data analytics.
 - [**Microsoft WinGet**](https://github.com/microsoft/winget-cli): The library is employed within the **Windows Package Manager**, facilitating its operation.
