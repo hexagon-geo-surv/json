@@ -28,12 +28,12 @@ brew install nlohmann-json --HEAD
 
 instead. See [nlohmann-json](https://formulae.brew.sh/formula/nlohmann-json) for more information.
 
-??? example
+??? example "Example: Raw compilation"
 
     1. Create the following file:
 
         ```cpp title="example.cpp"
-        --8<-- "integration/example.cpp"
+        --8<-- "integration/homebrew/example.cpp"
         ```
 
     2. Install the package
@@ -42,16 +42,35 @@ instead. See [nlohmann-json](https://formulae.brew.sh/formula/nlohmann-json) for
         brew install nlohmann-json
         ```
 
-    3. Determine the include path, which defaults to `/usr/local/Cellar/nlohmann-json/$version/include`, where `$version` is the version of the library, e.g. `3.7.3`. The path of the library can be determined with
+    3. Compile the code
 
         ```sh
-        brew list nlohmann-json
+        c++ example.cpp -I$(brew --prefix nlohmann-json)/include -std=c++11 -o example
         ```
 
-    4. Compile the code. For instance, the code can be compiled using Clang with
+??? example "Example: CMake"
+
+    1. Create the following files:
+
+        ```cpp title="example.cpp"
+        --8<-- "integration/homebrew/example.cpp"
+        ```
+
+        ```cmake title="CMakeLists.txt"
+        --8<-- "integration/homebrew/CMakeLists.txt"
+        ```
+
+    2. Install the package
 
         ```sh
-        clang++ example.cpp -I/usr/local/Cellar/nlohmann-json/3.7.3/include -std=c++11 -o example
+        brew install nlohmann-json
+        ```
+
+    3. Compile the code
+
+        ```sh
+        CMAKE_PREFIX_PATH=$(brew --prefix) cmake -S . -B build
+        cmake --build build
         ```
 
 :material-update: The [formula](https://formulae.brew.sh/formula/nlohmann-json) is updated automatically.
