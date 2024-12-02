@@ -189,6 +189,32 @@ If you are using [Spack](https://www.spack.io/) to manage your dependencies, you
 
 If you are using [hunter](https://github.com/cpp-pm/hunter) on your project for external dependencies, then you can use the [nlohmann_json package](https://hunter.readthedocs.io/en/latest/packages/pkg/nlohmann_json.html). Please see the hunter project for any issues regarding the packaging.
 
+??? example
+
+    1. Create the following files:
+
+        ```cmake title="CMakeLists.txt"
+        --8<-- "integration/hunter/CMakeLists.txt"
+        ```
+
+        ```cpp title="example.cpp"
+        --8<-- "integration/hunter/example.cpp"
+        ```
+
+    2. Download required files
+
+        ```shell
+        mkdir cmake
+        wget https://raw.githubusercontent.com/cpp-pm/gate/master/cmake/HunterGate.cmake -O cmake/HunterGate.cmake
+        ```
+
+    3. Build the project with CMake:
+
+        ```shell
+        cmake -S . -B build
+        cmake --build build
+        ```
+
 ## Buckaroo
 
 If you are using [Buckaroo](https://buckaroo.pm), you can install this library's module with `buckaroo add github.com/buckaroo-pm/nlohmann-json`. Please file issues [here](https://github.com/buckaroo-pm/nlohmann-json). There is a demo repo [here](https://github.com/njlr/buckaroo-nholmann-json-example).
@@ -218,10 +244,8 @@ If you are using [vcpkg](https://github.com/Microsoft/vcpkg/) on your project fo
     3. Build:
 
         ```sh
-        mkdir build
-        cd build
-        cmake .. -DCMAKE_TOOLCHAIN_FILE=/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake
-        cmake --build .
+        cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
+        cmake --build build
         ```
 
     Note you need to adjust `/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake` to your system.
