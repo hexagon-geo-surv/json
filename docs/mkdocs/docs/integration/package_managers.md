@@ -62,9 +62,58 @@ If you are using the [Meson Build System](http://mesonbuild.com), add this sourc
 
 The provided `meson.build` can also be used as an alternative to cmake for installing `nlohmann_json` system-wide in which case a pkg-config file is installed. To use it, simply have your build system require the `nlohmann_json` pkg-config dependency. In Meson, it is preferred to use the [`dependency()`](https://mesonbuild.com/Reference-manual.html#dependency) object with a subproject fallback, rather than using the subproject directly.
 
+??? example
+
+    1. Create the following files
+
+        ```ini title="meson.build"
+        --8<-- "integration/meson/meson.build"
+        ```
+
+        ```cpp title="example.cpp"
+        --8<-- "integration/meson/example.cpp"
+        ```
+
+    2. Use the Meson WrapDB to fetch the nlohmann/json wrap:
+
+        ```shell
+        mkdir subprojects
+        meson wrap install nlohmann_json
+        ```
+
+    3. Build:
+
+        ```shell
+        meson setup build
+        meson compile -C build
+        ```
+
 ## Bazel
 
 This repository provides a [Bazel](https://bazel.build/) `WORKSPACE.bazel` and a corresponding `BUILD.bazel` file. Therefore, this repository can be referenced by workspace rules such as `http_archive`, `git_repository`, or `local_repository` from other Bazel workspaces. To use the library you only need to depend on the target `@nlohmann_json//:json` (e.g. via `deps` attribute).
+
+??? example
+
+    1. Create the following files
+
+        ```ini title="BUILD"
+        --8<-- "integration/bazel/BUILD"
+        ```
+
+        ```ini title="WORKSPACE"
+        --8<-- "integration/bazel/WORKSPACE"
+        ```
+
+        ```cpp title="example.cpp"
+        --8<-- "integration/bazel/example.cpp"
+        ```
+
+    2. Build and run:
+
+        ```shell
+        bazel build //:main
+        bazel run //:main
+        ```
 
 ## Conan
 
