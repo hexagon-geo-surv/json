@@ -135,14 +135,17 @@ If you are using [Conan](https://www.conan.io/) to manage your dependencies, mer
         --8<-- "integration/conan/example.cpp"
         ```
 
-    2. Build:
+    2. Call Conan:
 
         ```sh
-        mkdir build
-        cd build
-        conan install ..
-        cmake ..
-        cmake --build .
+        conan install . --output-folder=build --build=missing
+        ```
+
+    3. Build:
+
+        ```sh
+        cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE="conan_toolchain.cmake" -DCMAKE_BUILD_TYPE=Release
+        cmake --build build
         ```
 
 :material-update: The [package](https://conan.io/center/nlohmann_json) is updated automatically.
@@ -150,6 +153,37 @@ If you are using [Conan](https://www.conan.io/) to manage your dependencies, mer
 ## Spack
 
 If you are using [Spack](https://www.spack.io/) to manage your dependencies, you can use the [`nlohmann-json` package](https://spack.readthedocs.io/en/latest/package_list.html#nlohmann-json). Please see the [spack project](https://github.com/spack/spack) for any issues regarding the packaging.
+
+??? example
+
+    1. Create the following files:
+
+        ```cmake title="CMakeLists.txt"
+        --8<-- "integration/spack/CMakeLists.txt"
+        ```
+
+        ```cpp title="example.cpp"
+        --8<-- "integration/spack/example.cpp"
+        ```
+
+    2. Install the library:
+
+        ```sh
+        spack install nlohmann-json
+        ```
+
+    3. Load the environment for your Spack-installed packages:
+
+        ```sh
+        spack load nlohmann-json
+        ```
+
+    4. Build the project with CMake:
+
+        ```sh
+        cmake -S . -B build -DCMAKE_PREFIX_PATH=$(spack location -i nlohmann-json)
+        cmake --build build
+        ```
 
 ## Hunter
 
