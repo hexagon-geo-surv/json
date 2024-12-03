@@ -236,7 +236,12 @@ If you are using [hunter](https://github.com/cpp-pm/hunter) on your project for 
 
 ## Buckaroo
 
-If you are using [Buckaroo](https://buckaroo.pm), you can install this library's module with `buckaroo add github.com/buckaroo-pm/nlohmann-json`. Please file issues [here](https://github.com/buckaroo-pm/nlohmann-json). There is a demo repo [here](https://github.com/njlr/buckaroo-nholmann-json-example).
+If you are using [Buckaroo](https://buckaroo.pm), you can install this library's module with `buckaroo add github.com/buckaroo-pm/nlohmann-json`. There is a demo repo [here](https://github.com/njlr/buckaroo-nholmann-json-example).
+
+!!! warning
+
+    The module is outdated as the respective [repository](https://github.com/buckaroo-pm/nlohmann-json) has not been
+    updated in years.
 
 ## vcpkg
 
@@ -274,6 +279,37 @@ If you are using [vcpkg](https://github.com/Microsoft/vcpkg/) on your project fo
 If you are using [cget](http://cget.readthedocs.io/en/latest/), you can install the latest development version with `cget install nlohmann/json`. A specific version can be installed with `cget install nlohmann/json@v3.1.0`. Also, the multiple header version can be installed by adding the `-DJSON_MultipleHeaders=ON` flag (i.e., `cget install nlohmann/json -DJSON_MultipleHeaders=ON`).
 
 :material-update: cget reads directly from the [GitHub repository](https://github.com/nlohmann/json) and is always up-to-date.
+
+??? example
+
+    1. Create the following files:
+
+        ```cmake title="CMakeLists.txt"
+        --8<-- "integration/vcpkg/CMakeLists.txt"
+        ```
+    
+        ```cpp title="example.cpp"
+        --8<-- "integration/vcpkg/example.cpp"
+        ```
+
+    2. Initialize cget
+
+        ```shell
+        cget init
+        ```
+ 
+    3. Install the library
+
+        ```shell
+        cget install nlohmann/json
+        ```
+
+    4. Build
+
+        ```shell
+        cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=cget/cget/cget.cmake
+        cmake --build build
+        ```
 
 ## CocoaPods
 
@@ -317,8 +353,21 @@ If you are using [`wsjcpp`](http://wsjcpp.org), you can use the command `wsjcpp 
 If you are using [`CPM.cmake`](https://github.com/TheLartians/CPM.cmake), you can check this [`example`](https://github.com/TheLartians/CPM.cmake/tree/master/examples/json). After [adding CPM script](https://github.com/TheLartians/CPM.cmake#adding-cpm) to your project, implement the following snippet to your CMake:
 
 ```cmake
-CPMAddPackage(
-    NAME nlohmann_json
-    GITHUB_REPOSITORY nlohmann/json
-    VERSION 3.9.1)
+CPMAddPackage("gh:nlohmann/json@3.11.3")
 ```
+
+??? example
+
+    1. Download CPM.cmake
+
+    ```shell
+    mkdir -p cmake
+    wget -O cmake/CPM.cmake https://github.com/cpm-cmake/CPM.cmake/releases/latest/download/get_cpm.cmake
+    ```
+
+    2. Build
+
+    ```shell
+    cmake -S . -B build
+    cmake --build build
+    ```
