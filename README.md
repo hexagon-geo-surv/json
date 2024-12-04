@@ -1117,6 +1117,8 @@ auto cbor = json::to_msgpack(j); // 0xD5 (fixext2), 0x10, 0xCA, 0xFE
 
 The library is used in multiple projects, applications, operating systems, etc. The list below is not exhaustive, but the result of an internet search. If you know further customers of the library, please let me know, see [contact](#contact).
 
+![](docs/usages/customers.png)
+
 ### Space Exploration
 
 - [**Peregrine Lunar Lander Flight 01**](https://en.wikipedia.org/wiki/Peregrine_Mission_One) - The library was utilized for payload management in the **Peregrine Moon Lander**, developed by **Astrobotic Technology** and launched as part of NASA's **Commercial Lunar Payload Services (CLPS)** program. After six days in orbit, the spacecraft was intentionally redirected into Earth's atmosphere, where it burned up over the Pacific Ocean on **January 18, 2024**.
@@ -1207,6 +1209,7 @@ The library is used in multiple projects, applications, operating systems, etc. 
 - [**NVIDIA Omniverse**](https://docs.omniverse.nvidia.com/composer/latest/common/product-licenses/usd-explorer/usd-explorer-2023.2.0-licenses-manifest.html), a platform for 3D content creation and collaboration that enables real-time simulations and interactive experiences across various industries
 - [**Pixar Renderman**](https://rmanwiki-26.pixar.com/space/REN26/19662083/Legal+Notice), a photorealistic 3D rendering software developed by Pixar, widely used in the film industry for creating high-quality visual effects and animations
 - [**ROS - Robot Operating System**](http://docs.ros.org/en/noetic/api/behaviortree_cpp/html/json_8hpp_source.html), a set of software libraries and tools that assist in developing robot applications
+- [**UBS**](https://www.ubs.com/), a multinational financial services and banking company
 
 ### Enterprise and Cloud Applications
 
