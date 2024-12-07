@@ -54,6 +54,7 @@ nav:
     - home/exceptions.md
     - home/releases.md
     - home/design_goals.md
+    - home/customers.md
     - home/sponsors.md
   - Features:
     - features/arbitrary_types.md
