@@ -42,7 +42,13 @@ class basic_json;
 
 ## Iterator invalidation
 
-Todo
+All operations that add values to arrays (`push_back`, `operator+=`, `emplace_back`, `insert`, and also assignment to
+the result of `operator[]` for non-existing indices) can yield a reallocation, in which case all iterators (including
+the `end()` iterator) and all references to the elements are invalidated.
+
+For `ordered_json`, also all operations that add a value to an object (`push_back`, `operator+=`, `clear`, `emplace`,
+`erase`, `insert`, `update`, and assignment to the result `operator[]` for a non-existing key) can yield a reallocation,
+in which  case all iterators (including the `end()` iterator) and all references to the elements are invalidated.
 
 ## Requirements
 
