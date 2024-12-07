@@ -36,9 +36,12 @@ const_reference operator[](const json_pointer& ptr) const;
 
 ## Iterator invalidation
 
-For the non-const versions 1. and 4., when passing an array index that does not exist, it is created and filled with a
-`#!json null` value before a reference to it is returned. For this, a reallocation can happen, in which case all
+For the non-const versions 1. and 4., when passing an **array** index that does not exist, it is created and filled with
+a `#!json null` value before a reference to it is returned. For this, a reallocation can happen, in which case all
 iterators (including the [`end()`](end.md) iterator) and all references to the elements are invalidated.
+
+For [`ordered_json`](../ordered_json.md), also passing an **object key** to the non-const versions 2., 3., and 4., a
+reallocation can happen which again invalidates all iterators and all references.
 
 ## Parameters
 

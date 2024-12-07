@@ -26,9 +26,12 @@ void insert(const_iterator first, const_iterator last);
 
 ## Iterator invalidation
 
-For all cases where an element is added to an array, a reallocation can happen, in which case all iterators (including
-the [`end()`](end.md) iterator) and all references to the elements are invalidated. Otherwise, only the
+For all cases where an element is added to an **array**, a reallocation can happen, in which case all iterators
+(including the [`end()`](end.md) iterator) and all references to the elements are invalidated. Otherwise, only the
 [`end()`](end.md) iterator is invalidated.
+
+For [`ordered_json`](../ordered_json.md), also adding an element to an **object** can yield a reallocation which again
+invalidates all iterators and all references.
 
 ## Parameters
 
