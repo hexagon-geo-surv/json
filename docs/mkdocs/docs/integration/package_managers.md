@@ -37,7 +37,7 @@ When executed, this program should create output similar to
 
     formula: [**`nlohmann-json`**](https://formulae.brew.sh/formula/nlohmann-json)
 
-    - ![](https://img.shields.io/homebrew/v/nlohmann-json)
+    - [![Homebrew package](https://repology.org/badge/version-for-repo/homebrew/nlohmann-json.svg)](https://repology.org/project/nlohmann-json/versions)
     - :octicons-tag-24: Availalbe versions: current version and development version (with `--HEAD` parameter)
     - :octicons-rocket-24: The formula is updated with every release.
     - :octicons-person-24: Maintainer: Niels Lohmann
@@ -194,7 +194,7 @@ repository can be referenced within a `MODULE.bazel` by rules such as `archive_o
 
     recipe: [**`nlohmann_json`**](https://conan.io/center/recipes/nlohmann_json)
 
-    - ![](https://img.shields.io/conan/v/nlohmann_json)
+    - [![ConanCenter package](https://repology.org/badge/version-for-repo/conancenter/nlohmann-json.svg)](https://repology.org/project/nlohmann-json/versions)
     - :octicons-tag-24: Availalbe versions: current version and older versions (see
       [Conan Center](https://conan.io/center/recipes/nlohmann_json))
     - :octicons-rocket-24: The package is update automatically via
@@ -240,7 +240,7 @@ requires, where `x.y.z` is the release version you want to use.
 
     package: [**`nlohmann-json`**](https://packages.spack.io/package.html?name=nlohmann-json)
 
-    - ![](https://img.shields.io/spack/v/nlohmann-json)
+    - [![Spack package](https://repology.org/badge/version-for-repo/spack/nlohmann-json.svg)](https://repology.org/project/nlohmann-json/versions)
     - :octicons-tag-24: Availalbe versions: current version and older versions (see
       [Spack package](https://packages.spack.io/package.html?name=nlohmann-json))
     - :octicons-rocket-24: The package is updated with every release.
@@ -341,7 +341,7 @@ Please see the  Hunter project for any issues regarding the packaging.
 
     package: [**`nlohmann-json`**](https://github.com/Microsoft/vcpkg/tree/master/ports/nlohmann-json)
 
-    - ![](https://img.shields.io/vcpkg/v/nlohmann-json)
+    - [![Vcpkg package](https://repology.org/badge/version-for-repo/vcpkg/nlohmann-json.svg)](https://repology.org/project/nlohmann-json/versions)
     - :octicons-tag-24: Availalbe versions: current version
     - :octicons-rocket-24: The package is updated with every release.
     - :octicons-file-24: File issues at the [vcpkg issue tracker](https://github.com/microsoft/vcpkg/issues)
@@ -626,6 +626,11 @@ conda install -c conda-forge nlohmann_json
 
 If you are using [MSYS2](http://www.msys2.org/), you can use the [mingw-w64-nlohmann-json](https://packages.msys2.org/base/mingw-w64-nlohmann-json) package, type `pacman -S mingw-w64-i686-nlohmann-json` or `pacman -S mingw-w64-x86_64-nlohmann-json` for installation. Please file issues [here](https://github.com/msys2/MINGW-packages/issues/new?title=%5Bnlohmann-json%5D) if you experience problems with the packages.
 
+[![MSYS2 clang64 package](https://repology.org/badge/version-for-repo/msys2_clang64/nlohmann-json.svg)](https://repology.org/project/nlohmann-json/versions)
+[![MSYS2 clangarm64 package](https://repology.org/badge/version-for-repo/msys2_clangarm64/nlohmann-json.svg)](https://repology.org/project/nlohmann-json/versions)
+[![MSYS2 mingw package](https://repology.org/badge/version-for-repo/msys2_mingw/nlohmann-json.svg)](https://repology.org/project/nlohmann-json/versions)
+[![MSYS2 ucrt64 package](https://repology.org/badge/version-for-repo/msys2_ucrt64/nlohmann-json.svg)](https://repology.org/project/nlohmann-json/versions)
+
 :material-update: The [package](https://packages.msys2.org/base/mingw-w64-nlohmann-json) is updated automatically.
 
 ## MacPorts
@@ -634,6 +639,7 @@ If you are using [MSYS2](http://www.msys2.org/), you can use the [mingw-w64-nloh
 
     port: [**`nlohmann-json`**](https://ports.macports.org/port/nlohmann-json/)
 
+    - [![MacPorts package](https://repology.org/badge/version-for-repo/macports/nlohmann-json.svg)](https://repology.org/project/nlohmann-json/versions)
     - :octicons-tag-24: Availalbe versions: current version
     - :octicons-rocket-24: The port is updated with every release.
     - :octicons-file-24: File issues at the [MacPorts issue tracker](https://trac.macports.org/newticket?port=nlohmann-json)
@@ -784,6 +790,17 @@ CPMAddPackage("gh:nlohmann/json@3.11.3")
         ```shell
         xmake run
         ```
+
+* * *
+
+## Other package managers
+
+The library is also contained in many other package repositories: [![Packaging status](https://repology.org/badge/tiny-repos/nlohmann-json.svg)](https://repology.org/project/nlohmann-json/versions)
+
+??? example "Package version overview"
+
+    [![Packaging status](https://repology.org/badge/vertical-allrepos/nlohmann-json.svg)](https://repology.org/project/nlohmann-json/versions)
+
 
 * * *
 

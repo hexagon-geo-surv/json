@@ -347,6 +347,8 @@ markdown_extensions:
       base_path: docs
       check_paths: true
       restrict_base_path: false  # needed to allow including files from the .github folder
+      auto_append:
+        - ../includes/glossary.md
 
 plugins:
   - search:
@@ -369,6 +371,7 @@ plugins:
         - http://nlohmann.github.io/json/*
         - https://nlohmann.github.io/json/*
         - mailto:*
+  - privacy
 
 extra_css:
   - css/custom.css
