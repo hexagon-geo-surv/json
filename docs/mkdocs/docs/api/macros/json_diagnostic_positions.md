@@ -6,22 +6,36 @@
 
 This macro enables position diagnostics for generated JSON objects.
 
-When enabled, two new properties: `start_pos()` and `end_pos()` are added to `nlohmann::basic_json` objects and fields. `start_pos()` returns the start 
-position of that JSON object/field in the original string the object was parsed from. Likewise, `end_pos()` returns the end position of that JSON
-object/field in the original string the object was parsed from.
+When enabled, two new member functions [`start_pos()`](../basic_json/start_pos.md) and
+[`end_pos()`](../basic_json/end_pos.md) are added to [`basic_json`](../basic_json/index.md) values.
+[`start_pos()`](../basic_json/start_pos.md) returns the start position of that JSON value in the original JSON string
+the object was parsed from. Likewise, [`end_pos()`](../basic_json/end_pos.md) returns the end position of that JSON
+value in the original string the object was parsed from.
 
-`start_pos()` returns the first character of a given element in the original JSON string, while `end_pos()` returns the character following the last
-character. For objects and arrays, the first and last characters correspond to the opening or closing braces/brackets, respectively. For fields, the first
-and last character represent the opening and closing quotes or the first and last character of the field's numerical or predefined value
-(true/false/null), respectively.
+[`start_pos()`](../basic_json/start_pos.md) returns the first character of a given value in the original JSON string,
+while [`end_pos()`](../basic_json/end_pos.md) returns the character _following_ the last character. For objects and
+arrays, the first and last characters correspond to the opening or closing braces/brackets, respectively. For primitive
+values, the first and last character represent the opening and closing quotes (strings) or the first and last character
+of the field's numerical or predefined value (`true`, `false`, `null`), respectively.
 
-Given the above, `end_pos() - start_pos()` for an object or field provides the length of the string representation for that object or field, including the
-opening or closing braces, brackets, or quotes.
+| JSON type | return value [`start_pos()`](../basic_json/start_pos.md) | return value [`end_pos()`](../basic_json/end_pos.md) |
+|-----------|----------------------------------------------------------|------------------------------------------------------|
+| object    | position of the opening `{`                              | position after the closing `}`                       |
+| array     | position of the opening `[`                              | position after the closing `]`                       |
+| string    | position of the opening `"`                              | position after the closing `"`                       |
+| number    | position of the first character                          | position after the last character                    |
+| boolean   | position of `t` for `true` and `f` for `false`           | position after `e`                                   |
+| null      | position of `n`                                          | position after `l`                                   |
 
-`start_pos()` and `end_pos()` are only set if the JSON object was parsed using `parse()`. For all other cases, `std::string::npos` will be returned.
+Given the above, [`end_pos()`](../basic_json/end_pos.md)` - `[`start_pos()`](../basic_json/start_pos.md) for a JSON
+value provides the length of the parsed JSON string for that value, including the opening or closing braces, brackets,
+or quotes.
 
-Note that enabling this macro increases the size of every JSON value by two `std::size_t` fields and adds
-slight runtime overhead.
+[`start_pos()`](../basic_json/start_pos.md) and [`end_pos()`](../basic_json/end_pos.md) are only set if the JSON value
+was parsed using [`parse()`](../basic_json/parse.md). For all other cases,`std::string::npos` will be returned.
+
+Note that enabling this macro increases the size of every JSON value by two `std::size_t` fields and adds slight runtime
+overhead.
 
 ## Default definition
 
@@ -35,11 +49,16 @@ When the macro is not defined, the library will define it to its default value.
 
 ## Notes
 
-!!! hint "CMake option"
+!!! note "CMake option"
 
     Diagnostic messages can also be controlled with the CMake option
     [`JSON_Diagnostic_Positions`](../../integration/cmake.md#json_diagnostic_positions) (`OFF` by default)
     which defines `JSON_DIAGNOSTIC_POSITIONS` accordingly.
+
+!!! warning "Invalidation"
+
+    The returned positions are only valid as long as the JSON value is not changed. The positions are *not* updated
+    when the JSON value is changed.
 
 ## Examples
 
@@ -59,3 +78,4 @@ When the macro is not defined, the library will define it to its default value.
 
 ## Version history
 
+- Added in version 3.12.0.
