@@ -10,7 +10,8 @@ When enabled, two new member functions [`start_pos()`](../basic_json/start_pos.m
 [`end_pos()`](../basic_json/end_pos.md) are added to [`basic_json`](../basic_json/index.md) values.
 [`start_pos()`](../basic_json/start_pos.md) returns the start position of that JSON value in the original JSON string
 the object was parsed from. Likewise, [`end_pos()`](../basic_json/end_pos.md) returns the end position of that JSON
-value in the original string the object was parsed from.
+value in the original string the object was parsed from. If the value was not parsed, but constructed by other means,
+the functions returns `std::string::npos`.
 
 [`start_pos()`](../basic_json/start_pos.md) returns the first character of a given value in the original JSON string,
 while [`end_pos()`](../basic_json/end_pos.md) returns the character _following_ the last character. For objects and
@@ -31,11 +32,9 @@ Given the above, [`end_pos()`](../basic_json/end_pos.md)` - `[`start_pos()`](../
 value provides the length of the parsed JSON string for that value, including the opening or closing braces, brackets,
 or quotes.
 
-[`start_pos()`](../basic_json/start_pos.md) and [`end_pos()`](../basic_json/end_pos.md) are only set if the JSON value
-was parsed using [`parse()`](../basic_json/parse.md). For all other cases,`std::string::npos` will be returned.
-
 Note that enabling this macro increases the size of every JSON value by two `std::size_t` fields and adds slight runtime
-overhead.
+overhead to parsing, copying JSON value objects, and the generation of error messages for exceptions. It also causes
+these values to be reported in those error messages.
 
 ## Default definition
 
