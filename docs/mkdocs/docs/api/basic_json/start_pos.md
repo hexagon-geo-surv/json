@@ -6,8 +6,7 @@ constexpr std::size_t start_pos() const noexcept;
 #endif
 ```
 
-Returns the position of the first character in the JSON string from which the value was parsed, provided the value
-originated from a string. If the value was constructed by other means, the function returns `std::string::npos`.
+Returns the position of the first character in the JSON string from which the value was parsed from.
 
 | JSON type | return value                                   |
 |-----------|------------------------------------------------|
@@ -20,7 +19,8 @@ originated from a string. If the value was constructed by other means, the funct
 
 ## Return value
 
-the first character of a given value in the parsed JSON string
+the position of the first character of the value in the parsed JSON string, if the value was created by the
+[`parse`](parse.md) function, or `std::string::npos` if the value was constructed otherwise
 
 ## Exception safety
 

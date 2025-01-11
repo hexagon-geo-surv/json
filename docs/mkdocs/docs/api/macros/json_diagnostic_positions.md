@@ -7,17 +7,16 @@
 This macro enables position diagnostics for generated JSON objects.
 
 When enabled, two new member functions [`start_pos()`](../basic_json/start_pos.md) and
-[`end_pos()`](../basic_json/end_pos.md) are added to [`basic_json`](../basic_json/index.md) values.
-[`start_pos()`](../basic_json/start_pos.md) returns the start position of that JSON value in the original JSON string
-the object was parsed from. Likewise, [`end_pos()`](../basic_json/end_pos.md) returns the end position of that JSON
-value in the original string the object was parsed from. If the value was not parsed, but constructed by other means,
-the functions returns `std::string::npos`.
+[`end_pos()`](../basic_json/end_pos.md) are added to [`basic_json`](../basic_json/index.md) values. If the value was
+created by calling the[`parse`](../basic_json/parse.md) function, then these functions allow to query the byte positions
+of the value in the input it was parsed from. In case the value was constructed by other means, `std::string::npos` is
+returned.
 
-[`start_pos()`](../basic_json/start_pos.md) returns the first character of a given value in the original JSON string,
-while [`end_pos()`](../basic_json/end_pos.md) returns the character _following_ the last character. For objects and
-arrays, the first and last characters correspond to the opening or closing braces/brackets, respectively. For primitive
-values, the first and last character represent the opening and closing quotes (strings) or the first and last character
-of the field's numerical or predefined value (`true`, `false`, `null`), respectively.
+[`start_pos()`](../basic_json/start_pos.md) returns the position of the first character of a given value in the original
+JSON string, while [`end_pos()`](../basic_json/end_pos.md) returns the position of the character _following_ the last
+character. For objects and arrays, the first and last characters correspond to the opening or closing braces/brackets,
+respectively. For primitive values, the first and last character represent the opening and closing quotes (strings) or
+the first and last character of the field's numerical or predefined value (`true`, `false`, `null`), respectively.
 
 | JSON type | return value [`start_pos()`](../basic_json/start_pos.md) | return value [`end_pos()`](../basic_json/end_pos.md) |
 |-----------|----------------------------------------------------------|------------------------------------------------------|
@@ -50,9 +49,16 @@ When the macro is not defined, the library will define it to its default value.
 
 !!! note "CMake option"
 
-    Diagnostic messages can also be controlled with the CMake option
+    Diagnostic positions can also be controlled with the CMake option
     [`JSON_Diagnostic_Positions`](../../integration/cmake.md#json_diagnostic_positions) (`OFF` by default)
     which defines `JSON_DIAGNOSTIC_POSITIONS` accordingly.
+
+!!! note "Availability"
+
+    Diagnostic positons are only available if the value was created by the [`parse`](../basic_json/parse.md) function.
+    The [`sax_parse`](../basic_json/sax_parse.md) function or all other means to create a JSON value **do not** set the
+    diagnostic positions and [`start_pos()`](../basic_json/start_pos.md) and [`end_pos()`](../basic_json/end_pos.md)
+    will only return `std::string::npos` for these values.
 
 !!! warning "Invalidation"
 
@@ -61,7 +67,7 @@ When the macro is not defined, the library will define it to its default value.
 
 ## Examples
 
-??? example "Example 1: retrieving positions"
+??? example "Example: retrieving positions"
 
     ```cpp
     --8<-- "examples/diagnostic_positions.cpp"

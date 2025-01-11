@@ -6,9 +6,7 @@ constexpr std::size_t end_pos() const noexcept;
 #endif
 ```
 
-Returns the position immediately following the last character of the JSON string from which the value was parsed,
-provided the value originated from a string. If the value was constructed by other means, the function returns
-`std::string::npos`.
+Returns the position immediately following the last character of the JSON string from which the value was parsed from.
 
 | JSON type | return value                      |
 |-----------|-----------------------------------|
@@ -21,7 +19,8 @@ provided the value originated from a string. If the value was constructed by oth
 
 ## Return value
 
-the character _following_ the last character of the given value in the parsed JSON string
+the position of the character _following_ the last character of the given value in the parsed JSON string, if the
+value was created by the [`parse`](parse.md) function, or `std::string::npos` if the value was constructed otherwise
 
 ## Exception safety
 
