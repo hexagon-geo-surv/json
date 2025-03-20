@@ -389,7 +389,7 @@ TEST_CASE("value conversion")
                 {{0, 0, 0}, {0, 0, 0}}, \
                 {{0, 0, 0}, {0, 0, 0}}\
             };
-            // NOLINTEND(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
+            // NOLINTEND(misc-const-correctness,cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
 
             const json j2 = nbs;
             j2.get_to(nbs2);
@@ -423,7 +423,7 @@ TEST_CASE("value conversion")
                     {{0, 0, 0}, {0, 0, 0}}\
                 }\
             };
-            // NOLINTEND(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
+            // NOLINTEND(misc-const-correctness,cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
 
             const json j2 = nbs;
             j2.get_to(nbs2);
