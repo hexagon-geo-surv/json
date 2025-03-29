@@ -556,12 +556,12 @@ function(ci_get_cmake version var)
     set(${var} ${${var}} PARENT_SCOPE)
 endfunction()
 
-ci_get_cmake(3.1.0 CMAKE_3_1_0_BINARY)
-ci_get_cmake(3.13.0 CMAKE_3_13_0_BINARY)
+ci_get_cmake(3.5.0 CMAKE_3_5_0_BINARY)
+ci_get_cmake(4.0.0 CMAKE_4_0_0_BINARY)
 
-set(JSON_CMAKE_FLAGS_3_1_0 JSON_Diagnostics JSON_Diagnostic_Positions JSON_GlobalUDLs JSON_ImplicitConversions JSON_DisableEnumSerialization
+set(JSON_CMAKE_FLAGS_3_5_0 JSON_Diagnostics JSON_Diagnostic_Positions JSON_GlobalUDLs JSON_ImplicitConversions JSON_DisableEnumSerialization
     JSON_LegacyDiscardedValueComparison JSON_Install JSON_MultipleHeaders JSON_SystemInclude JSON_Valgrind)
-set(JSON_CMAKE_FLAGS_3_13_0 JSON_BuildTests)
+set(JSON_CMAKE_FLAGS_4_0_0 JSON_BuildTests)
 
 function(ci_add_cmake_flags_targets flag min_version)
     string(TOLOWER "ci_cmake_flag_${flag}" flag_target)
@@ -587,12 +587,12 @@ function(ci_add_cmake_flags_targets flag min_version)
     set(JSON_CMAKE_FLAG_BUILD_DIRS ${JSON_CMAKE_FLAG_BUILD_DIRS} PARENT_SCOPE)
 endfunction()
 
-foreach(JSON_CMAKE_FLAG ${JSON_CMAKE_FLAGS_3_1_0})
-    ci_add_cmake_flags_targets(${JSON_CMAKE_FLAG} 3.1.0)
+foreach(JSON_CMAKE_FLAG ${JSON_CMAKE_FLAGS_3_5_0})
+    ci_add_cmake_flags_targets(${JSON_CMAKE_FLAG} 3.5.0)
 endforeach()
 
-foreach(JSON_CMAKE_FLAG ${JSON_CMAKE_FLAGS_3_13_0})
-    ci_add_cmake_flags_targets(${JSON_CMAKE_FLAG} 3.13.0)
+foreach(JSON_CMAKE_FLAG ${JSON_CMAKE_FLAGS_4_0_0})
+    ci_add_cmake_flags_targets(${JSON_CMAKE_FLAG} 4.0.0)
 endforeach()
 
 add_custom_target(ci_cmake_flags
@@ -695,6 +695,6 @@ add_custom_target(ci_test_build_documentation
 ###############################################################################
 
 add_custom_target(ci_clean
-    COMMAND rm -fr ${PROJECT_BINARY_DIR}/build_* cmake-3.1.0-Darwin64 ${JSON_CMAKE_FLAG_BUILD_DIRS} ${single_binaries}
+    COMMAND rm -fr ${PROJECT_BINARY_DIR}/build_* cmake-3.5.0-Darwin64 ${JSON_CMAKE_FLAG_BUILD_DIRS} ${single_binaries}
     COMMENT "Clean generated directories"
 )
