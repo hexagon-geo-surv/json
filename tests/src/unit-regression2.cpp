@@ -1037,6 +1037,19 @@ TEST_CASE("regression tests 2")
         oj["test"] = states;
         CHECK(oj["test"].dump() == expected);
     }
+
+    SECTION("issue #4710 - BSON parser fails on a specific floating-point number on Windows")
+    {
+        // input from the issue description
+        const std::vector<std::uint8_t> broken = {{0x14, 0x00, 0x00, 0x00, 0x01, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x00, 0x1a, 0xf2, 0xed, 0x49, 0x19, 0x3a, 0x08, 0xc0, 0x00}};
+        const auto j_parsed = nlohmann::json::from_bson(broken);
+        CHECK(j_parsed["value"] == Approx(-3.0283685470333355));
+
+        // roundtrip
+        json j;
+        j["value"] = -3.0283685470333355;
+        CHECK(nlohmann::json::to_bson(j) == broken);
+    }
 }
 
 DOCTEST_CLANG_SUPPRESS_WARNING_POP
