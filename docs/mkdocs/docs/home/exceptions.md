@@ -520,7 +520,7 @@ The order of object iterators cannot be compared, because JSON objects are unord
 
 ### json.exception.invalid_iterator.214
 
-Cannot get value for iterator: Either the iterator belongs to a null value or it is an iterator to a primitive type (number, boolean, or string), but the iterator is different to `begin()`.
+Cannot get value for iterator: Either the iterator belongs to a null value or, it is an iterator to a primitive type (number, boolean, or string), but the iterator is different to `begin()`.
 
 !!! failure "Example message"
 
