@@ -2255,7 +2255,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
         // value only works for objects
         if (JSON_HEDLEY_LIKELY(is_object()))
         {
-            // if the key is found, return the value and the given default value otherwise
+            // If 'key' is found, return its value. Otherwise, return `default_value'.
             const auto it = find(key);
             if (it != end())
             {
@@ -2280,7 +2280,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
         // value only works for objects
         if (JSON_HEDLEY_LIKELY(is_object()))
         {
-            // if the key is found, return the value and the given default value otherwise
+            // If 'key' is found, return its value. Otherwise, return `default_value'.
             const auto it = find(key);
             if (it != end())
             {
@@ -2306,7 +2306,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
         // value only works for objects
         if (JSON_HEDLEY_LIKELY(is_object()))
         {
-            // if the key is found, return the value and the given default value otherwise
+            // If 'key' is found, return its value. Otherwise, return `default_value'.
             const auto it = find(std::forward<KeyType>(key));
             if (it != end())
             {
@@ -2333,7 +2333,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
         // value only works for objects
         if (JSON_HEDLEY_LIKELY(is_object()))
         {
-            // if the key is found, return the value and the given default value otherwise
+            // If 'key' is found, return its value. Otherwise, return `default_value'.
             const auto it = find(std::forward<KeyType>(key));
             if (it != end())
             {
@@ -2356,7 +2356,8 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
         // value only works for objects
         if (JSON_HEDLEY_LIKELY(is_object()))
         {
-            // if the pointer resolves a value, return it or use the default value
+            // If the pointer resolves to a value, return it. Otherwise, return
+            // 'default_value'.
             JSON_TRY
             {
                 return ptr.get_checked(this).template get<ValueType>();
@@ -2381,7 +2382,8 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
         // value only works for objects
         if (JSON_HEDLEY_LIKELY(is_object()))
         {
-            // if the pointer resolves a value, return it or use the default value
+            // If the pointer resolves to a value, return it. Otherwise, return
+            // 'default_value'.
             JSON_TRY
             {
                 return ptr.get_checked(this).template get<ReturnType>();
@@ -4002,7 +4004,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     /// @sa https://json.nlohmann.me/api/basic_json/operator_ltlt/
     friend std::ostream& operator<<(std::ostream& o, const basic_json& j)
     {
-        // read width member and use it as an indentation parameter if nonzero
+        // read width member and use it as the indentation parameter if nonzero
         const bool pretty_print = o.width() > 0;
         const auto indentation = pretty_print ? o.width() : 0;
 
