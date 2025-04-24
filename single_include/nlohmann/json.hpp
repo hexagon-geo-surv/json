@@ -19565,9 +19565,11 @@ class serializer
         // get number of digits for a float -> text -> float round-trip
         static constexpr auto d = std::numeric_limits<number_float_t>::max_digits10;
 
-        // the actual conversion
+        // the actual conversion (Note that is_ieee_single_or_double==false
+        // rules out that number_float_t is double or long double. Therefore,
+        // we need to cast the argument x to double to be able to use snprintf.)
         // NOLINTNEXTLINE(cppcoreguidelines-pro-type-vararg,hicpp-vararg)
-        std::ptrdiff_t len = (std::snprintf)(number_buffer.data(), number_buffer.size(), "%.*g", d, x);
+        std::ptrdiff_t len = (std::snprintf)(number_buffer.data(), number_buffer.size(), "%.*g", d, static_cast<double>(x));
 
         // negative value indicates an error
         JSON_ASSERT(len > 0);
