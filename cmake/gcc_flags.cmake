@@ -1,4 +1,4 @@
-# Warning flags determined for GCC 14.2.0 with https://github.com/nlohmann/gcc_flags:
+# Warning flags determined for GCC 15.1.0 with https://github.com/nlohmann/gcc_flags:
 # Ignored GCC warnings:
 # -Wno-abi-tag                    We do not care about ABI tags.
 # -Wno-aggregate-return           The library uses aggregate returns.
@@ -156,7 +156,6 @@ set(GCC_CXXFLAGS
     -Wenum-conversion
     -Wexceptions
     -Wexpansion-to-defined
-    -Wexperimental-fmv-target
     -Wextra
     -Wextra-semi
     -Wflex-array-member-not-at-end
