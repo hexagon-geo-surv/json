@@ -314,7 +314,7 @@ set(GCC_CXXFLAGS
     -Wswitch-unreachable
     -Wsync-nand
     -Wsynth
-    -Wsystem-headers
+    -Wno-system-headers
     -Wtautological-compare
     -Wtemplate-body
     -Wtemplate-id-cdtor
