@@ -39,6 +39,7 @@
 #include <nlohmann/detail/hash.hpp>
 #include <nlohmann/detail/input/binary_reader.hpp>
 #include <nlohmann/detail/input/input_adapters.hpp>
+#include <nlohmann/detail/input/json_sax.hpp>
 #include <nlohmann/detail/input/lexer.hpp>
 #include <nlohmann/detail/input/parser.hpp>
 #include <nlohmann/detail/iterators/internal_iterator.hpp>
