@@ -235,7 +235,7 @@ TEST_CASE("alternative string type")
         {
             alt_json doc;
             doc["answer"]["everything"] = 42;
-            alt_string dump = doc.dump();
+            const alt_string dump = doc.dump();
             CHECK(dump == R"({"answer":{"everything":42}})");
         }
 

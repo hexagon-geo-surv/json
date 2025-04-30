@@ -1242,7 +1242,7 @@ TEST_CASE("BSON roundtrips" * doctest::skip())
                 INFO_WITH_TEMP(filename + ": std::ifstream");
                 // parse JSON file
                 std::ifstream f_json(filename);
-                json j1 = json::parse(f_json);
+                const json j1 = json::parse(f_json);
 
                 // parse BSON file
                 std::ifstream f_bson(filename + ".bson", std::ios::binary);
