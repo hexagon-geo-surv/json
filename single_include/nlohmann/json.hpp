@@ -18103,6 +18103,13 @@ inline cached_power get_cached_power_for_binary_exponent(int e)
         }
     };
 
+    // The code below triggers a -Wstrict-overflow warning, because GCC ignores
+    // the value range of e and warns that during the calculation of `k` an
+    // overflow could happen.
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstrict-overflow"
+#endif
     // This computation gives exactly the same results for k as
     //      k = ceil((kAlpha - e - 1) * 0.30102999566398114)
     // for |e| <= 1500, but doesn't require floating-point operations.
@@ -18111,6 +18118,9 @@ inline cached_power get_cached_power_for_binary_exponent(int e)
     JSON_ASSERT(e <=  1500);
     const int f = kAlpha - e - 1;
     const int k = ((f * 78913) / (1 << 18)) + static_cast<int>(f > 0);
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
 
     const int index = (-kCachedPowersMinDecExp + k + (kCachedPowersDecStep - 1)) / kCachedPowersDecStep;
     JSON_ASSERT(index >= 0);
