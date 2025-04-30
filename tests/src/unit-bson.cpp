@@ -596,7 +596,7 @@ TEST_CASE("BSON input/output_adapters")
         {"object", {{ "string", "value" }}}
     };
 
-    const std::vector<std::uint8_t> const bson_representation =
+    const std::vector<std::uint8_t> bson_representation =
     {
         /*size */ 0x4f, 0x00, 0x00, 0x00,
         /*entry*/ 0x01, 'd',  'o',  'u',  'b',  'l',  'e',  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x45, 0x40,
