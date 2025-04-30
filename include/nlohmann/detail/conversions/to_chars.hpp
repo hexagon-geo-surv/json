@@ -480,9 +480,6 @@ inline cached_power get_cached_power_for_binary_exponent(int e)
     JSON_ASSERT(e <=  1500);
     const int f = kAlpha - e - 1;
     const int k = ((f * 78913) / (1 << 18)) + static_cast<int>(f > 0);
-#ifdef __GNUC__
-#pragma GCC diagnostic pop
-#endif
 
     const int index = (-kCachedPowersMinDecExp + k + (kCachedPowersDecStep - 1)) / kCachedPowersDecStep;
     JSON_ASSERT(index >= 0);
@@ -493,6 +490,9 @@ inline cached_power get_cached_power_for_binary_exponent(int e)
     JSON_ASSERT(kGamma >= cached.e + e + 64);
 
     return cached;
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
 }
 
 /*!
