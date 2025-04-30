@@ -318,6 +318,14 @@ struct cached_power // c = f * 2^e ~= 10^k
     int k;
 };
 
+// The code below triggers a -Wstrict-overflow warning, because GCC ignores
+// the value range of e and warns that during the calculation of `k` an
+// overflow could happen.
+#ifdef __GNUC__
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wstrict-overflow"
+#endif
+
 /*!
 For a normalized diyfp w = f * 2^e, this function returns a (normalized) cached
 power-of-ten c = f_c * 2^e_c, such that the exponent of the product w * c
@@ -465,13 +473,6 @@ inline cached_power get_cached_power_for_binary_exponent(int e)
         }
     };
 
-    // The code below triggers a -Wstrict-overflow warning, because GCC ignores
-    // the value range of e and warns that during the calculation of `k` an
-    // overflow could happen.
-#ifdef __GNUC__
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wstrict-overflow"
-#endif
     // This computation gives exactly the same results for k as
     //      k = ceil((kAlpha - e - 1) * 0.30102999566398114)
     // for |e| <= 1500, but doesn't require floating-point operations.
@@ -490,10 +491,11 @@ inline cached_power get_cached_power_for_binary_exponent(int e)
     JSON_ASSERT(kGamma >= cached.e + e + 64);
 
     return cached;
-#ifdef __GNUC__
-#pragma GCC diagnostic pop
-#endif
 }
+
+#ifdef __GNUC__
+    #pragma GCC diagnostic pop
+#endif
 
 /*!
 For n != 0, returns k, such that pow10 := 10^(k-1) <= n < 10^k.
