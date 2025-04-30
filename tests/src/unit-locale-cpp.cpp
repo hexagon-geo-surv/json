@@ -143,7 +143,7 @@ TEST_CASE("locale-dependent test (LC_NUMERIC=de_DE)")
             if (snprintf_result != "12,34")
             {
                 CAPTURE(snprintf_result)
-                MESSAGE("To test if number parsing is locale-independent, we set the locale to de_DE. However, on this system, the decimal separator doesn't change `,` potentially due to a known musl issue (https://github.com/nlohmann/json/issues/4767).");
+                MESSAGE("To test if number parsing is locale-independent, we set the locale to de_DE. However, on this system, the decimal separator doesn't change to `,` potentially due to a known musl issue (https://github.com/nlohmann/json/issues/4767).");
             }
         }
 
