@@ -18109,8 +18109,8 @@ inline cached_power get_cached_power_for_binary_exponent(int e)
     // NB: log_10(2) ~= 78913 / 2^18
     JSON_ASSERT(e >= -1500);
     JSON_ASSERT(e <=  1500);
-    const std::uint64_t f = kAlpha - e - 1;
-    const int k = static_cast<int>((f * 78913) >> 18) + static_cast<int>(f > 0);
+    const int f = kAlpha - e - 1;
+    const int k = ((f * 78913) / (1 << 18)) + static_cast<int>(f > 0);
 
     const int index = (-kCachedPowersMinDecExp + k + (kCachedPowersDecStep - 1)) / kCachedPowersDecStep;
     JSON_ASSERT(index >= 0);
