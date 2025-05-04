@@ -18,10 +18,10 @@ TEST_CASE("iterators 1")
     {
         SECTION("uninitialized")
         {
-            const json::iterator it;
+            json::iterator it; // NOLINT(misc-const-correctness)
             CHECK(it.m_object == nullptr);
 
-            const json::const_iterator cit;
+            json::const_iterator cit; // NOLINT(misc-const-correctness)
             CHECK(cit.m_object == nullptr);
         }
 
