@@ -288,7 +288,7 @@ set(GCC_CXXFLAGS
     -Wstrict-aliasing
     -Wstrict-aliasing=3
     -Wstrict-null-sentinel
-    -Wno-strict-overflow
+    -Wstrict-overflow
     -Wstring-compare
     -Wstringop-overflow
     -Wstringop-overflow=4
