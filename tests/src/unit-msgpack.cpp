@@ -1945,7 +1945,7 @@ TEST_CASE("MessagePack with std::byte")
                 msgpack_data[i] = std::byte(temp[i]);
             }
             // Attempt direct deserialization using std::byte input
-            json direct_result = json::from_msgpack(msgpack_data);
+            const json direct_result = json::from_msgpack(msgpack_data);
 
             // Test the workaround approach: reinterpret as unsigned char* and use iterator range
             const auto* const char_start = reinterpret_cast<unsigned char const*>(msgpack_data.data());

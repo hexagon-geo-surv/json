@@ -68,8 +68,8 @@ TEST_CASE("ordered_map")
     SECTION("operator[]")
     {
         std::map<std::string, std::string> m {{"eins", "one"}, {"zwei", "two"}, {"drei", "three"}};
-        ordered_map<std::string, std::string> om(m.begin(), m.end()); // NOLINT(performance-unnecessary-copy-initialization)
-        const auto com = om;
+        ordered_map<std::string, std::string> om(m.begin(), m.end());
+        const auto com = om; // NOLINT(performance-unnecessary-copy-initialization)
 
         SECTION("with Key&&")
         {
