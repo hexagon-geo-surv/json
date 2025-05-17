@@ -17625,6 +17625,7 @@ NLOHMANN_JSON_NAMESPACE_END
 #include <cstdint> // uint8_t
 #include <cstdio> // snprintf
 #include <limits> // numeric_limits
+#include <sstream> // string_stream
 #include <string> // string, char_traits
 #include <iomanip> // setfill, setw
 #include <type_traits> // is_same
@@ -19562,55 +19563,13 @@ class serializer
 
     void dump_float(number_float_t x, std::false_type /*is_ieee_single_or_double*/)
     {
-        // get number of digits for a float -> text -> float round-trip
-        static constexpr auto d = std::numeric_limits<number_float_t>::max_digits10;
+        std::ostringstream oss;
+        oss.precision(std::numeric_limits<number_float_t>::max_digits10);
+        oss.imbue(std::locale::classic());
+        oss << std::defaultfloat << x;
 
-        // the actual conversion (Note that is_ieee_single_or_double==false
-        // rules out that number_float_t is double or long double. Therefore,
-        // we need to cast the argument x to double to be able to use snprintf.)
-        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-vararg,hicpp-vararg)
-        std::ptrdiff_t len = (std::snprintf)(number_buffer.data(), number_buffer.size(), "%.*g", d, static_cast<double>(x));
-
-        // negative value indicates an error
-        JSON_ASSERT(len > 0);
-        // check if buffer was large enough
-        JSON_ASSERT(static_cast<std::size_t>(len) < number_buffer.size());
-
-        // erase thousands separator
-        if (thousands_sep != '\0')
-        {
-            // NOLINTNEXTLINE(readability-qualified-auto,llvm-qualified-auto): std::remove returns an iterator, see https://github.com/nlohmann/json/issues/3081
-            const auto end = std::remove(number_buffer.begin(), number_buffer.begin() + len, thousands_sep);
-            std::fill(end, number_buffer.end(), '\0');
-            JSON_ASSERT((end - number_buffer.begin()) <= len);
-            len = (end - number_buffer.begin());
-        }
-
-        // convert decimal point to '.'
-        if (decimal_point != '\0' && decimal_point != '.')
-        {
-            // NOLINTNEXTLINE(readability-qualified-auto,llvm-qualified-auto): std::find returns an iterator, see https://github.com/nlohmann/json/issues/3081
-            const auto dec_pos = std::find(number_buffer.begin(), number_buffer.end(), decimal_point);
-            if (dec_pos != number_buffer.end())
-            {
-                *dec_pos = '.';
-            }
-        }
-
-        o->write_characters(number_buffer.data(), static_cast<std::size_t>(len));
-
-        // determine if we need to append ".0"
-        const bool value_is_int_like =
-            std::none_of(number_buffer.begin(), number_buffer.begin() + len + 1,
-                         [](char c)
-        {
-            return c == '.' || c == 'e';
-        });
-
-        if (value_is_int_like)
-        {
-            o->write_characters(".0", 2);
-        }
+        const auto s = oss.str();
+        o->write_characters(s.c_str(), s.size());
     }
 
     /*!
