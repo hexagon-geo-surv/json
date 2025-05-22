@@ -1104,13 +1104,13 @@ TEST_CASE("regression tests 2")
 #if JSON_HAS_RANGES == 1
     SECTION("issue 4440")
     {
-      auto noOpFilter = std::views::filter([](auto&&)
+      auto noOpFilter = std::views::filter([](auto&&) noexcept
                                            {
                                              return true;
                                            });
       json j = {1, 2, 3};
       auto filtered = j | noOpFilter;
-      CHECK(j == *filtered.begin());
+      CHECK(*filtered.begin() == 1);
     }
 #endif
 }
