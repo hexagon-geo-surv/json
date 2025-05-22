@@ -51,7 +51,7 @@ using ordered_json = nlohmann::ordered_json;
 #endif
 
 // for #4440
-#ifdef JSON_HAS_RANGES
+#if JSON_HAS_RANGES == 1
     #include <ranges>
 #endif
 
@@ -1101,7 +1101,7 @@ TEST_CASE("regression tests 2")
 #endif
 
 
-#ifdef JSON_HAS_RANGES
+#if JSON_HAS_RANGES == 1
     SECTION("issue 4440")
     {
       auto noOpFilter = std::views::filter([](auto&&)
