@@ -50,6 +50,11 @@ using ordered_json = nlohmann::ordered_json;
     #endif
 #endif
 
+// for #4440
+#ifdef JSON_HAS_RANGES
+    #include <ranges>
+#endif
+
 // NLOHMANN_JSON_SERIALIZE_ENUM uses a static std::pair
 DOCTEST_CLANG_SUPPRESS_WARNING_PUSH
 DOCTEST_CLANG_SUPPRESS_WARNING("-Wexit-time-destructors")
@@ -1092,6 +1097,20 @@ TEST_CASE("regression tests 2")
         json j;
         j.m_data.m_type = static_cast<json::value_t>(100); // NOLINT(clang-analyzer-optin.core.EnumCastOutOfRange)
         CHECK(j.type_name() == "invalid");
+    }
+#endif
+
+
+#ifdef JSON_HAS_RANGES
+    SECTION("issue 4440")
+    {
+      auto noOpFilter = std::views::filter([](auto&&)
+                                           {
+                                             return true;
+                                           });
+      json j = {1, 2, 3};
+      auto filtered = j | noOpFilter;
+      CHECK(j == *filtered.begin());
     }
 #endif
 }
