@@ -271,6 +271,8 @@ jobs:
     container: nvidia/cuda:12.9.0-devel-ubuntu24.04
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Get latest CMake and ninja
+        uses: lukka/get-cmake@ea004816823209b8d1211e47b216185caee12cc5 # v4.02
       - name: Run CMake
         run: CXX=nvcc cmake -S . -B build -D CMAKE_BUILD_TYPE=Debug -DJSON_BuildTests=On -DJSON_FastTests=ON
       - name: Build
