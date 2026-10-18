@@ -102,14 +102,26 @@
     #define NLOHMANN_JSON_ABI_TAG_OBJECTS_FOR_ENUM_KEYED_MAPS
 #endif
 
+#ifdef JSON_VIEW_NO_SIMD
+    #define NLOHMANN_JSON_ABI_TAG_VIEW_NO_SIMD _vns
+#else
+    #define NLOHMANN_JSON_ABI_TAG_VIEW_NO_SIMD
+#endif
+
+#ifdef JSON_VIEW_USE_SSSE3
+    #define NLOHMANN_JSON_ABI_TAG_VIEW_USE_SSSE3 _vssse3
+#else
+    #define NLOHMANN_JSON_ABI_TAG_VIEW_USE_SSSE3
+#endif
+
 #ifndef NLOHMANN_JSON_NAMESPACE_NO_VERSION
     #define NLOHMANN_JSON_NAMESPACE_NO_VERSION 0
 #endif
 
 // Construct the namespace ABI tags component
-#define NLOHMANN_JSON_ABI_TAGS_CONCAT_EX(a, b, c, d, e, f, g, h) json_abi ## a ## b ## c ## d ## e ## f ## g ## h
-#define NLOHMANN_JSON_ABI_TAGS_CONCAT(a, b, c, d, e, f, g, h) \
-    NLOHMANN_JSON_ABI_TAGS_CONCAT_EX(a, b, c, d, e, f, g, h)
+#define NLOHMANN_JSON_ABI_TAGS_CONCAT_EX(a, b, c, d, e, f, g, h, i, j) json_abi ## a ## b ## c ## d ## e ## f ## g ## h ## i ## j
+#define NLOHMANN_JSON_ABI_TAGS_CONCAT(a, b, c, d, e, f, g, h, i, j) \
+    NLOHMANN_JSON_ABI_TAGS_CONCAT_EX(a, b, c, d, e, f, g, h, i, j)
 
 #define NLOHMANN_JSON_ABI_TAGS                                       \
     NLOHMANN_JSON_ABI_TAGS_CONCAT(                                   \
@@ -120,7 +132,9 @@
             NLOHMANN_JSON_ABI_TAG_PRECISE_STREAM_POSITION,           \
             NLOHMANN_JSON_ABI_TAG_STRICT_NUL_HANDLING,               \
             NLOHMANN_JSON_ABI_TAG_STRICT_BINARY_UTF8,                \
-            NLOHMANN_JSON_ABI_TAG_OBJECTS_FOR_ENUM_KEYED_MAPS)
+            NLOHMANN_JSON_ABI_TAG_OBJECTS_FOR_ENUM_KEYED_MAPS,       \
+            NLOHMANN_JSON_ABI_TAG_VIEW_NO_SIMD,                      \
+            NLOHMANN_JSON_ABI_TAG_VIEW_USE_SSSE3)
 
 // Construct the namespace version component
 #define NLOHMANN_JSON_NAMESPACE_VERSION_CONCAT_EX(major, minor, patch) \
